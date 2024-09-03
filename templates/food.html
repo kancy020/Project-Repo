@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .menu-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-item h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .menu-item p {
+            margin: 5px 0;
+        }
+        .menu-item .price {
+            font-weight: bold;
+            color: #2a9d8f;
+            font-size: 1.2em;
+        }
+        .menu-item .description {
+            flex-grow: 1;
+            margin-left: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu</h1>
+    {% for item in food_items %}
+    <div class="food-item">
+        <h2>{{ item.name }}</h2>
+        <div class="description">{{ item.description }}</div>
+        <div class="price">{{ item.price }}</div>
+    </div>
+    {% endfor %}
+</body>
+</html>
