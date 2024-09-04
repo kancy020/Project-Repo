@@ -14,11 +14,16 @@ class Stores(db.Model):
 
     def __repr__(self):
         return '<Name %r>' % self.id
+    
+@app.route('/')
+def index():
+    return "Welcome to Store Management"
 
 @app.route('/addStore', methods=['GET','POST'])
 def add_store():
     pass
 
 @app.route('/storesDisplay')
-def list_stores():
-    pass
+def storesDisplay():
+    title = "Store List"
+    return render_template("storesDisplay.html", title=title)
