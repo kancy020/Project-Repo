@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Petrol Prices{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Petrol Prices</h1>
+        <ul>
+            {% for petrol in petrol_list %}
+                <li>{{ petrol.type }} - {{ petrol.price }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

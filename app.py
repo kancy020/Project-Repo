@@ -21,7 +21,7 @@ class Petrol(db.Model):
     price = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
-        return ''
+        return '<Name %s, Price %s>' % (self.name, self.price)
     
 @app.route('/')
 def index():
