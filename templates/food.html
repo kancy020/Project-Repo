@@ -1,57 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .menu-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .menu-item h2 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        .menu-item p {
-            margin: 5px 0;
-        }
-        .menu-item .price {
-            font-weight: bold;
-            color: #2a9d8f;
-            font-size: 1.2em;
-        }
-        .menu-item .description {
-            flex-grow: 1;
-            margin-left: 20px;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food Services</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+    .service-buttons {
+      justify-content: center;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .service-buttons button {
+      width: 300px;
+      height: 60px;
+      font-size: 25px;
+      color: white;
+    }
+    
+    .fixed-home-buttons {
+      justify-content: center;
+      display: flex;
+      gap: 10px;
+      padding: 50px;
+      position: relative;
+    } 
+
+    .fixed-home-buttons button {
+      width: 230px;
+      height: 70px;
+      font-size: 35px;
+      color: white;
+    }
+
+    body {
+      background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 40%;
+      color: white;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+    }
+    
+    .card-text {
+      font-size: 1.25rem;
+    }
+    
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h1>Menu</h1>
-    {% for item in food_items %}
-    <div class="food-item">
-        <h2>{{ item.name }}</h2>
-        <div class="description">{{ item.description }}</div>
-        <div class="price">{{ item.price }}</div>
+    <div class="container mt-4">
+        <h1 class="text-center text-white">Food Service</h1>
+        <hr>
+        
+        <h2 class="text-center text-white">Menu</h2>
+        
+        <div class="row">
+          {% for item in food_items %}
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <p class="card-price">{{ item.price }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
     </div>
-    {% endfor %}
+
+    <div class="fixed-home-buttons">
+      <button class="btn btn-primary">Fuel</button>
+      <button class="btn btn-primary">Stores</button>  
+      <button class="btn btn-primary">Menu</button>
+    </div>
 </body>
 </html>
