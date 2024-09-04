@@ -1,18 +1,50 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FuelHomePage</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+.service-buttons{
+  justify-content: center;
+  text-align: center;
+  gap: 30px;
+}
+
+.service-buttons button{
+  width: 300px;
+  height: 60px;
+  font-size: 25px;
+  color: white;
+}
+.fixed-home-buttons {
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+} 
+
+.fixed-home-buttons button{
+  width: 230px;
+  height: 70px;
+  font-size: 35px;
+  color: white;
+}
+body{
+  background-color: black;
+}
+</style>
+
 </head>
-<body style="background-color:black">
+<body>
     <div class="container">
         <h1 style="color:crimson" class="text-md-center">UTR</h1><hr>
     </div>
 
-    <div class="container">
-        <div class="text-center">
+    <div class="container text-center">
+      <div class="service-buttons">
         <div class="row">
         <div class="col-md-12 mb-1">
             <button type="button" class="btn btn-danger btn-lg">pay-before-you-pump</button><hr>
@@ -31,31 +63,10 @@
         </div>
     </div>
 
-
-    <div class="container">
-    <div class="row">
-        <div class="col-md-3 offset-1">
-        <div class="card">
-        <div class="card-body">
-          <a href="#" class="btn btn-danger">Fuel Service</a>
-        </div>
-      </div>
-    </div>
-        <div class="col-md-3 offset-1">
-        <div class="card">
-        <div class="card-body">
-          <a href="#" class="btn btn-danger">Stores</a>
-        </div>
-      </div>
-    </div>
-        <div class="col-md-3 offset-1">
-        <div class="card">
-        <div class="card-body">
-            <a href="#" class="btn btn-danger">Menu</a>
-        </div>
-      </div>
-    </div>
-    </div>
+    <div class="fixed-home-buttons">
+      <button class="btn btn-danger">Fuel</button>
+      <button class="btn btn-danger">Stores</button>  
+      <button class="btn btn-danger">Menu</button>
     </div>
   </body>
 </html>
