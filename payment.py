@@ -45,16 +45,16 @@ class Payment:
     def calculate_total_price(self):
 
         self.totalPrice = sum(item.get_total_price() for item in self.items)
-        print("Processing Transaction")
+        print("Processing Transaction\n")
 
     '''substracts the balance from total price'''
     def calculate_total_balance(self):
         if self.totalPrice > self.__balance:
-            return "Transaction declined\n Insufficent balance"
+            return "Transaction declined \nInsufficent balance"
         
         self.__balance -= self.totalPrice
 
-        print("Finalising Transaction")
+        print("Finalising Transaction\n")
 
     '''output a recipt of total cost'''
     def receipt(self):
@@ -63,14 +63,14 @@ class Payment:
         print("---------------------------")
         print(f"Total: ${self.totalPrice}")
         for items in self.items:
-            print(f"Item Name: {items.name}\n Price: ${items.price}\n Quantity: {items.quantity}\n")
+            print(f"Item Name: {items.name}\nPrice: ${items.price}\nQuantity: {items.quantity}\n")
         print(f"balance now: {self.__balance}")
         print("---------------------------")
         print()
 
 
 
-    
+'''Testing order for payment'''    
 order1 = Order("Item1",10.00)
 order2 = Order("Item2",20.00,2)
 
@@ -89,3 +89,11 @@ payment1 = Payment(1100.00)
 payment1.add_item(order3)
 
 payment1.initiate_transaction()
+
+order4 = Order("Item3",10.00)
+
+payment2 = Payment(1.00)
+
+payment2.add_item(order3)
+
+payment2.initiate_transaction()
