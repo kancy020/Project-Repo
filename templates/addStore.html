@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Store</title>
-</head>
-<body>
-    <h1>Add a New Store</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Add a New Store</h1>
+        <br />
+        <form action="/addStore" method="POST">
+            <input type="text" placeholder="Store" name="name">
+            <input type="submit" value="Add Store" class="btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}

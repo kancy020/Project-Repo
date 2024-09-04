@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,10 +20,19 @@ def index():
     return "Welcome to Store Management"
 
 @app.route('/addStore', methods=['GET','POST'])
-def add_store():
-    pass
+def addStore():
+    if request.method == "POST":
+        name = request.form.get('name')
+        address = request.form.get('address')
+        if name and address:
+            new_store = Stores(name=name, address=address)
+            db.session.add(new_store)
+            db.session.commit()
+            return redirect(url_for('storesDisplay'))
+    return render_template('addStore.html')
 
 @app.route('/storesDisplay')
 def storesDisplay():
     title = "Store List"
-    return render_template("storesDisplay.html", title=title)
+    stores = Stores.query.all()
+    return render_template("storesDisplay.html", title=title, stores=stores)
