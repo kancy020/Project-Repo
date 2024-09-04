@@ -6,6 +6,7 @@
         <ul>
             {% for petrol in petrol_list %}
                 <li>{{ petrol.name }} - {{ petrol.price }}</li>
+                <a href="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}" class="btn btn-primary">Edit Price</a>
             {% endfor %}
         </ul>
     </div>
