@@ -15,6 +15,14 @@ class Stores(db.Model):
     def __repr__(self):
         return '<Name %r>' % self.id
     
+class Petrol(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+
+    def __repr__(self):
+        return ''
+    
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -36,3 +44,8 @@ def storesDisplay():
     title = "Store List"
     stores = Stores.query.all()
     return render_template("storesDisplay.html", title=title, stores=stores)
+
+@app.route('/petrolPrices')
+def petrolPrices():
+    petrol_list = Petrol.query.all()
+    return render_template('petrolPrices.html', petrol_list=petrol_list)
