@@ -49,3 +49,16 @@ def storesDisplay():
 def petrolPrices():
     petrol_list = Petrol.query.all()
     return render_template('petrolPrices.html', petrol_list=petrol_list)
+
+@app.route('/editPetrolPrice', methods=['GET', 'POST'])
+def editPetrolPrice(petrol_id):
+    petrol = Petrol.query.get_or_404(petrol_id)
+
+    if request.method == "POST":
+        new_price = request.form.get('price')
+        if new_price:
+            petrol.price = float(new_price)
+            db.session.commit()
+            return redirect(url_for('petrolPrices'))
+        
+    return render_template('editPetrolPrice.html', petrol=petrol)
