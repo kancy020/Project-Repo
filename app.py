@@ -17,7 +17,7 @@ class Stores(db.Model):
     
 @app.route('/')
 def index():
-    return "Welcome to Store Management"
+    return render_template('index.html')
 
 @app.route('/addStore', methods=['GET','POST'])
 def addStore():
