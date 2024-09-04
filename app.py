@@ -50,7 +50,7 @@ def petrolPrices():
     petrol_list = Petrol.query.all()
     return render_template('petrolPrices.html', petrol_list=petrol_list)
 
-@app.route('/editPetrolPrice', methods=['GET', 'POST'])
+@app.route('/editPetrolPrice/<int:petrol_id>', methods=['GET', 'POST'])
 def editPetrolPrice(petrol_id):
     petrol = Petrol.query.get_or_404(petrol_id)
 
