@@ -47,8 +47,9 @@ def storesDisplay():
 
 @app.route('/petrolPrices')
 def petrolPrices():
+    title = "Petrol Prices"
     petrol_list = Petrol.query.all()
-    return render_template('petrolPrices.html', petrol_list=petrol_list)
+    return render_template('petrolPrices.html', title=title, petrol_list=petrol_list)
 
 @app.route('/editPetrolPrice/<int:petrol_id>', methods=['GET', 'POST'])
 def editPetrolPrice(petrol_id):
