@@ -27,13 +27,9 @@ class Petrol(db.Model):
 def index():
     return render_template('login.html')
 
-
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login')
 def login():
     
-    if request.method == "POST":
-        #username =
-        #password =
-        return redirect(url_for('index'))
+    # return redirect(url_for('index'))
     
-    return render_template('login.html')
+    return render_template('index.html')
