@@ -32,15 +32,13 @@ def index():
 @app.route('/login', methods=['GET','POST']) 
 def login():
     
-
-
     if request.method == "POST":
         username= request.form.get('name')
         password= request.form.get('name')
 
         try:
             auth = Authenticator()
-            auth.fillData
+            auth.fillData()
             user = auth.login(username, password)
             print(user) #testing
             return redirect(url_for('home', user=user))
