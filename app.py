@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from backendFiles.Authenticator import *
 
 
 app = Flask(__name__)
@@ -34,12 +35,23 @@ def login():
 
 
     if request.method == "POST":
-        return redirect(url_for('home'))
+        username= request.form.get('name')
+        password= request.form.get('name')
+
+        try:
+            auth = Authenticator()
+            auth.fillData
+            user = auth.login(username, password)
+            print(user) #testing
+            return redirect(url_for('home', user=user))
+        except:
+             return render_template('login.html')
+        
     
     return render_template('login.html')
 
 @app.route('/home', methods=['GET','POST']) 
-def home():
+def home(user):
     
     # return redirect(url_for('home'))
     

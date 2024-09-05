@@ -1,11 +1,16 @@
-from LoginException import * 
-from User import User
+from backendFiles.LoginException import * 
+from backendFiles.User import User
 
 class Authenticator:
 
     def __init__(self):
         #list of user not sure what the plan is for the database
         self.userDict = {}
+
+    def fillData(self):
+        #just for testing
+        self.userDict["Logan"] = User("Logan","test",1234,[0,0])
+
 
     def addUser(self,username, password, contactNumber, homeLocations):
          

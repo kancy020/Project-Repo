@@ -8,11 +8,7 @@
 </head>
 <body>
     <!-- need to get username and password -->
-    <form action="/login" method="POST">
-        <div class="imgcontainer">
-          <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
-      
+    <form action="{{url_for('login',uname=login.username, psw=login.password)}}" method="POST">
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input type="text" placeholder="Enter Username" name="uname" required>
