@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stores.db'
 # Initalise DB
@@ -27,9 +28,19 @@ class Petrol(db.Model):
 def index():
     return render_template('login.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET','POST']) 
 def login():
     
-    # return redirect(url_for('index'))
+
+
+    if request.method == "POST":
+        return redirect(url_for('home'))
     
-    return render_template('index.html')
+    return render_template('login.html')
+
+@app.route('/home', methods=['GET','POST']) 
+def home():
+    
+    # return redirect(url_for('home'))
+    
+    return render_template('home.html')
