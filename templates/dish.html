@@ -3,38 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menu</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
-    .service-buttons {
-      justify-content: center;
-      text-align: center;
-      gap: 30px;
-    }
-
-    .service-buttons button {
-      width: 300px;
-      height: 60px;
-      font-size: 25px;
-      color: white;
-    }
-    
-    .fixed-home-buttons {
-      justify-content: center;
-      display: flex;
-      gap: 10px;
-      padding: 50px;
-      position: relative;
-    } 
-
-    .fixed-home-buttons button {
-      width: 230px;
-      height: 70px;
-      font-size: 45px;
-      color: white;
-    }
-
     body {
       background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
       background-size: cover;
@@ -67,27 +38,16 @@
     <div class="container mt-4">
         <h1 class="text-center text-white">Menu</h1>
         <hr>
-        
-        <div class="row">
-          {% for item in food_items %}
           <div class="col-md-4 mb-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">{{ item.description }}</p>
-                <p class="card-price">{{ item.price }}</p>
-                <a href="{{ url_for('dish', menu_id=menu.id) }}" class="btn btn-primary"></a>
+                <h5 class="card-title">{{ menu.name }}</h5>
+                <p class="card-text">{{ menu.description }}</p>
+                <p class="card-price">{{ menu.price }}</p>
               </div>
             </div>
           </div>
-          {% endfor %}
         </div>
-    </div>
-
-    <div class="fixed-home-buttons">
-      <button class="btn">Fuel</button>
-      <button class="btn">Stores</button>  
-      <button class="btn">Menu</button>
     </div>
 </body>
 </html>
