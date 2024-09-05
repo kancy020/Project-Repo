@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from backendFiles.Authenticator import *
 
@@ -33,19 +33,25 @@ def index():
 def login():
     
     if request.method == "POST":
-        username= request.form.get('name')
-        password= request.form.get('name')
-
+        username = request.form.get('name')
+        password = request.form.get('password')
         try:
             auth = Authenticator()
             auth.fillData()
             user = auth.login(username, password)
-            print(user) #testing
-            return redirect(url_for('home', user=user))
-        except:
-             return render_template('login.html')
-        
-    
+
+            if user:
+                auth = Authenticator()
+                auth.fillData()
+                user = auth.login(username, password)
+                print(user) #testing
+                session['user'] = user
+                return redirect(url_for('home'))
+        except InvalidUsername:
+            return render_template('login.html', error="Invalid username")
+        except InvalidPassword:
+            return render_template('login.html', error="Invalid password")
+            
     return render_template('login.html')
 
 @app.route('/home', methods=['GET','POST']) 
