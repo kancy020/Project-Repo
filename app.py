@@ -54,9 +54,9 @@ def storeDetails(store_id):
 
 @app.route('/addPetrol/<int:store_id>', methods=['GET', 'POST'])
 def addPetrol(store_id):
-    store = Stores.query.get_or_494(store_id)
+    store = Stores.query.get_or_404(store_id)
 
-    if len(store.petrols) > 3:
+    if len(store.petrols) >= 3:
         return redirect(url_for('storeDetails', store_id=store_id))
     
     if request.method == "POST":
@@ -70,12 +70,6 @@ def addPetrol(store_id):
             return redirect(url_for('storeDetails', store_id=store_id))
         
     return render_template('addPetrol.html', store=store)
-
-@app.route('/petrolPrices')
-def petrolPrices():
-    title = "Petrol Prices"
-    petrol_list = Petrol.query.all()
-    return render_template('petrolPrices.html', title=title, petrol_list=petrol_list)
 
 @app.route('/editPetrolPrice/<int:petrol_id>', methods=['GET', 'POST'])
 def editPetrolPrice(petrol_id):

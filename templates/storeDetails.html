@@ -11,7 +11,7 @@
                 <a href="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}">Edit</a>
                 {% else %}
                 <p>This store already has 3 petrol types, you cannot add any more.</p>
-                {% endif %}
+                {% endfor %}
             </li>
         </ul>
     </div>
