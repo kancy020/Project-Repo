@@ -6,6 +6,7 @@
         <ul>
             {% for store in stores %}
                 <li>{{ store.name }} - {{ store.address }}</li>
+                <a href="{{ url_for('storeDetails', store_id=store.id) }}">View Details</a>
             {% else %}
                 <li>No stores available</li>
             {% endfor %}

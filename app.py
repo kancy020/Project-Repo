@@ -11,6 +11,7 @@ class Stores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100), nullable=False)
+    petrols = db.relationship('Petrol', backref='store', lazy=True)
 
     def __repr__(self):
         return '<Name %r>' % self.id
@@ -19,6 +20,7 @@ class Petrol(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    store_id = db.Column(db.Integer, db.ForeignKey('stores.id'), nullable=False)
 
     def __repr__(self):
         return '<Name %s, Price %s>' % (self.name, self.price)
@@ -44,6 +46,11 @@ def storesDisplay():
     title = "Store List"
     stores = Stores.query.all()
     return render_template("storesDisplay.html", title=title, stores=stores)
+
+@app.route('/storeDetails/<int:store_id>')
+def storeDetails(store_id):
+    store = Stores.query.get_or_404(store_id)
+    return render_template('storeDetails.html', store=store)
 
 @app.route('/petrolPrices')
 def petrolPrices():
