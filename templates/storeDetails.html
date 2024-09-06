@@ -3,17 +3,15 @@
 {% block content %}
     <div class="container">
         <h1>{{ store.name }} - Details</h1>
-        <form action="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}" method="POST">
-            <label for="price">New Price:</label>
-            <input type="text" name="price" id="price" value="{{ petrol.price }}">
-            <input type="submit" value="Confirm" class="btn btn-secondary">
-        </form>
         <h2>Petrol Prices</h2>
         <ul>
             {% for petrol in store.petrols %}
             <li>
                 {{ petrol.name }}: ${{ petrol.price }}
                 <a href="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}">Edit</a>
+                {% else %}
+                <p>This store already has 3 petrol types, you cannot add any more.</p>
+                {% endif %}
             </li>
         </ul>
     </div>

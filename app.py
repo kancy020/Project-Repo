@@ -52,6 +52,25 @@ def storeDetails(store_id):
     store = Stores.query.get_or_404(store_id)
     return render_template('storeDetails.html', store=store)
 
+@app.route('/addPetrol/<int:store_id>', methods=['GET', 'POST'])
+def addPetrol(store_id):
+    store = Stores.query.get_or_494(store_id)
+
+    if len(store.petrols) > 3:
+        return redirect(url_for('storeDetails', store_id=store_id))
+    
+    if request.method == "POST":
+        name = request.form.get('name')
+        price = request.form.get('price')
+
+        if name and price:
+            new_petrol = Petrol(name=name, price=float(price), store_id=store_id)
+            db.session.add(new_petrol)
+            db.session.commit()
+            return redirect(url_for('storeDetails', store_id=store_id))
+        
+    return render_template('addPetrol.html', store=store)
+
 @app.route('/petrolPrices')
 def petrolPrices():
     title = "Petrol Prices"
@@ -67,6 +86,6 @@ def editPetrolPrice(petrol_id):
         if new_price:
             petrol.price = float(new_price)
             db.session.commit()
-            return redirect(url_for('petrolPrices'))
+            return redirect(url_for('storeDetails', store_id=petrol.store_id))
         
     return render_template('editPetrolPrice.html', petrol=petrol)
