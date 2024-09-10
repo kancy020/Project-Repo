@@ -104,7 +104,10 @@ def storeDelete(store_id):
     store = Stores.query.get_or_404(store_id)
 
     if request.method == "POST":
+        Petrol.query.filter_by(store_id=store.id).delete()
+
         db.session.delete(store)
         db.session.commit()
         return redirect(url_for('storesDisplay'))
+    
     return render_template('storeDelete.html', store=store)
