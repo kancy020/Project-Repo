@@ -111,3 +111,16 @@ def storeDelete(store_id):
         return redirect(url_for('storesDisplay'))
     
     return render_template('storeDelete.html', store=store)
+
+@app.route('/editStore/<int:store_id>', methods=['GET', 'POST'])
+def editStore(store_id):
+    store = Stores.query.get_or_404(store_id)
+
+    if request.method == "POST":
+        new_name = request.form.get('name')
+        if new_name:
+            store.name = new_name
+            db.session.commit()
+            return redirect(url_for('storesDisplay'))
+
+    return render_template('editStore.html', store=store)

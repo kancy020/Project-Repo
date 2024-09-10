@@ -3,6 +3,7 @@
 {% block content %}
     <div class="container">
         <h1>{{ store.name }} - Details</h1>
+        <a href="{{ url_for('editStore', store_id=store.id) }}">Edit Store</a>
         <h2>Petrol Prices</h2>
 
         {% if store.petrols|length >= 3 %}

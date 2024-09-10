@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Edit Store{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Edit Store Details for {{ store.name }}</h1>
+        <form action="{{ url_for('editStore', store_id=store.id) }}" method="POST">
+            <label for="name">Details:</label>
+            <input type="text" name="name" id="name" value="{{ store.name }}">
+            <input type="text" name="address" id="address" value="{{ store.address }}">
+            <input type="submit" value="Confirm" class="btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}
