@@ -15,41 +15,52 @@
       color: white;
       margin: 0;
       padding: 0;
-
     }
-.service-buttons{
-  justify-content: center;
-  text-align: center;
-  gap: 30px;
-}
+    .textfield{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        transform: translate(-50%, -50%)
+    }
+    .textfield input{
+        justify-content: center;
+        width: 500px;
+        height: 70px;
+        font-size: 45px;
+        color:black;    
+        background-color: gray; 
+    }
+    .next-button {
+        position: absolute;
+        top: 60%;
+        left: 41%;
+        text-align: center;
+    }
 
-.service-buttons button{
-  width: 100%;
-  max-width: 300px;
-  height: 60px;
-  font-size: 25px;
-  color: white;
-  margin-bottom: 20px;
-}
-.fixed-home-buttons {
-  justify-content: center;
-  display: flex;
-  gap: 10px;
-  padding: 20px;
-  position: fixed;
-  top: 65vh;
-  left: 100vh;
-  transform: translate(-50%, -50%);
-} 
-
-.fixed-home-buttons button{
-  width: 230px;
-  height: 70px;
-  font-size: 45px;
-  color: white;
-}
-
+    .next-button button{
+        justify-content: center;
+        width: 250px;
+        height: 45px;
+        font-size: 25px;
+        color:black;    
+    }
+    .navbar {
+        position:absolute;
+       
+    }
 
 </style>
 
 </head>
+<body>
+
+<div class="textfield">
+    <input type="text" placeholder="Example (XYZ-2W3)">  
+</div>
+<div class="next-button">
+    <button class="btn btn-danger" type=" button">Next</button>
+</div>
+
+</body>
+</html>
