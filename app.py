@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from backendFiles.Authenticator import *
+import json
 
 
 app = Flask(__name__)
@@ -42,7 +43,10 @@ def login():
             user = auth.login(username, password)
             
             if user!=None:
+                #need to pass the user object to the home page
                 #session['user'] = user
+                userJson = json.dumps(user.__dict__) 
+                session['user'] = userJson
                 return redirect(url_for('home'))
             
         except InvalidUsername:
@@ -74,8 +78,9 @@ def signUp():
 
 @app.route('/home', methods=['GET', 'POST']) 
 def home():
-
-    #if 'user' in session:
-    #   return render_template('home.html', user=session['user'])  # Pass user to template
+    #could be error from here
+    if 'user' in session:
+       print("made it here")
+       return render_template('home.html', user=session['user'])  # Pass user to template
     
-    return render_template('home.html')
+    return render_template('signUp.html', error="data could not be retrieved")
