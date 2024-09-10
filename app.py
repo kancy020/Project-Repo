@@ -83,3 +83,14 @@ def editPetrolPrice(petrol_id):
             return redirect(url_for('storeDetails', store_id=petrol.store_id))
         
     return render_template('editPetrolPrice.html', petrol=petrol)
+
+@app.route('/customerStoresDisplay')
+def customerStoresDisplay():
+    title = "Store List"
+    stores = Stores.query.all()
+    return render_template("customerStoresDisplay.html", title=title, stores=stores)
+
+@app.route('/customerStoreDetails/<int:store_id>')
+def customerStoreDetails(store_id):
+    store = Stores.query.get_or_404(store_id)
+    return render_template('customerStoreDetails.html', store=store)

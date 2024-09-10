@@ -1,12 +1,12 @@
-{% extends 'customer_base.html' }
+{% extends 'base_customer.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
     <div class="container">
-        <h1>{{ title }}</h1>
+        <h1>Stores</h1>
         <ul>
             {% for store in stores %}
                 <li>
-                    <a href="{{ url_for('customerStoreDetails', sotre_id=store.id) }}">{{ store.name }}</a>
+                    <a href="{{ url_for('customerStoreDetails', store_id=store.id) }}">{{ store.name }}</a>
                     - {{ store.address }}
                 </li>
             {% endfor %}

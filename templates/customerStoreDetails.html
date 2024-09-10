@@ -1,14 +1,16 @@
-{% extends 'customer_base.html' }
+{% extends 'base_customer.html' %}
 {% block title %}Store Details{{ store.name }}{% endblock %}
 {% block content %}
-    <div class="container">
-        <h1>{{ store.name }}</h1>
-        <p>Address: {{ store.address }}</p>
+    <h1>{{ store.name }}</h1>
+    <p>Address: {{ store.address }}</p>
+    {% if store.petrols %}
         <h2>Petrol Prices:</h2>
         <ul>
             {% for petrol in store.petrols %}
                 <li>{{ petrol.name }}: ${{ petrol.price }}</li>
             {% endfor %}
         </ul>
-    </div>
+    {% else %}
+        <p>No petrol types available.</p>
+    {% endif %}
 {% endblock %}
