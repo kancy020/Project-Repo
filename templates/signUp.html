@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign Up</title>
 </head>
 <body>
     <!-- need to get username and password -->
-    <form action="{{url_for('login')}}" method="POST">
+    <form action="{{url_for('signUp')}}" method="POST">
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input type="text" placeholder="Enter Username" name="name" required>
       
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" required>
-      
-          <button type="submit">Login</button>
+            
+          <label for="contactNum"><b>Contact Number </b></label>
+          <input type="text" placeholder="Enter Contact Number" name="contactNum" required>
+          
+          <button type="submit">Create Account</button>
 
         </div>
       
@@ -26,8 +29,7 @@
         // Check if there's an error passed from the server-side
         var error = "{{ error }}";
         if (error) {
-          
-            alert(error); 
+            alert(error);
         }
 
       </script>

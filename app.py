@@ -5,6 +5,7 @@ from backendFiles.Authenticator import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stores.db'
+app.secret_key = 'key'
 # Initalise DB
 db = SQLAlchemy(app)
 
@@ -39,24 +40,27 @@ def login():
             auth = Authenticator()
             auth.fillData()
             user = auth.login(username, password)
-
-            if user:
-                auth = Authenticator()
-                auth.fillData()
-                user = auth.login(username, password)
-                print(user) #testing
-                session['user'] = user
+            
+            if user!=None:
+                #session['user'] = user
                 return redirect(url_for('home'))
+            
         except InvalidUsername:
             return render_template('login.html', error="Invalid username")
         except InvalidPassword:
             return render_template('login.html', error="Invalid password")
-            
+
     return render_template('login.html')
 
-@app.route('/home', methods=['GET','POST']) 
-def home(user):
-    
-    # return redirect(url_for('home'))
+@app.route('/signUp', methods=['GET', 'POST']) 
+def signUp():
+    return render_template('signUp.html')
+
+
+@app.route('/home', methods=['GET', 'POST']) 
+def home():
+
+    #if 'user' in session:
+    #   return render_template('home.html', user=session['user'])  # Pass user to template
     
     return render_template('home.html')

@@ -2,11 +2,10 @@ import hashlib
 
 class User:
 
-    def __init__(self,username: str ,password:str,contactNumber:int,homeLocations: list) -> None:
+    def __init__(self,username: str ,password:str,contactNumber:int) -> None:
         self.__username= username
         self.__password = self._encryptPassword(password)
         self.contactNumber = contactNumber
-        self.homeLocations= homeLocations
  
     def _encryptPassword(self, password):
         # Encrypt the password with the username and return the sha digest.
