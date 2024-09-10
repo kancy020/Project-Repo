@@ -5,6 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///menu.db'
+app.secret_key = 'secret_key'
 db = SQLAlchemy(app)
 
 #create db model
@@ -26,11 +27,6 @@ def menu():
     food_items = Menu.query.all()
     return render_template('food.html', title=title, food_items=food_items)
 
-@app.route('/dish/<int:menu_id>')
-def dish(menu_id):
-    item = Menu.query.get_or_404(menu_id)
-    return render_template('dish.html', title="Menu", item=item)
-
 @app.route('/addItem', methods=['GET','POST'])
 def addItem():
     if request.method == "POST":
@@ -43,6 +39,23 @@ def addItem():
             db.session.commit()
             return redirect(url_for('menu'))
     return render_template('addItem.html')
+
+@app.route('/add to cart/<int:item_id', methods=['POST'])
+def addToCart(item_id):
+    item = Menu.query.get_or_404(item_id)
+    
+    if 'cart' not in db.session:
+        db.session['cart'] = []
+    
+    db.session['cart'].append({
+        'id': item.id,
+        'name': item.name,
+        'price': item.price,
+        'description': item.description,
+    })
+    
+    db.session.modified = True
+    return redirect(url_for('menu'))
 
 if __name__ == '__main__':
     app.run(debug=True)

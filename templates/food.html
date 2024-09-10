@@ -76,7 +76,6 @@
                 <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">{{ item.description }}</p>
                 <p class="card-price">{{ item.price }}</p>
-                <a href="{{ url_for('dish', menu_id=item.id) }}" class="btn btn-primary">View Dish</a>
               </div>
             </div>
           </div>
@@ -84,11 +83,14 @@
         </div>
     </div>
 
-    
     <div>
       <a href="{{ url_for('addItem')}}" class='btn btn-primary'>Add Item</a>
     </div>
     
+    <p align="right">
+    <a class='btn btn-primary'>Add to Cart</a>
+    </p>
+
     <div class="fixed-home-buttons">
       <button class="btn">Fuel</button>
       <button class="btn">Stores</button>  
