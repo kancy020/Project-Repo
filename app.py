@@ -52,8 +52,23 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route('/signUp', methods=['GET', 'POST']) 
 def signUp():
+    if request.method == "POST":   
+        username = request.form.get('name')
+        password = request.form.get('password')
+        contactNumber= request.form.get('contactNum')
+
+        try:
+            auth = Authenticator()
+            auth.addUser(username,password,contactNumber)
+
+        except UsernameAlreadyExists:
+            return render_template('signUp.html', error="Username Already Exists")
+        except PasswordTooShort:
+            return render_template('signUp.html', error="Password Too Short")
+
     return render_template('signUp.html')
 
 

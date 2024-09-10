@@ -22,11 +22,13 @@
       
       </form>
 
+      <a href="{{ url_for('signUp') }}">Sign Up</a>
+
       <script>
         // Check if there's an error passed from the server-side
         var error = "{{ error }}";
         if (error) {
-          
+
             alert(error); 
         }
 
