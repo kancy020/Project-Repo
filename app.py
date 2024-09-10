@@ -91,10 +91,20 @@ def editPetrolPrice(petrol_id):
 @app.route('/customerStoresDisplay')
 def customerStoresDisplay():
     title = "Store List"
-    stores = Stores.query.all()
+    stores = Stores.query.order_by(Stores.name.asc()).all()
     return render_template("customerStoresDisplay.html", title=title, stores=stores)
 
 @app.route('/customerStoreDetails/<int:store_id>')
 def customerStoreDetails(store_id):
     store = Stores.query.get_or_404(store_id)
     return render_template('customerStoreDetails.html', store=store)
+
+@app.route('/storeDelete/<int:store_id>', methods=['GET', 'POST'])
+def storeDelete(store_id):
+    store = Stores.query.get_or_404(store_id)
+
+    if request.method == "POST":
+        db.session.delete(store)
+        db.session.commit()
+        return redirect(url_for('storesDisplay'))
+    return render_template('storeDelete.html', store=store)
