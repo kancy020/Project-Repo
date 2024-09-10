@@ -29,6 +29,10 @@ class Petrol(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/customerIndex')
+def customerIndex():
+    return render_template('customerIndex.html')
+
 @app.route('/addStore', methods=['GET','POST'])
 def addStore():
     if request.method == "POST":
