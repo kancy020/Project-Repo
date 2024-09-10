@@ -4,25 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
     <title>Login</title>
 </head>
 <body>
-    <!-- need to get username and password -->
-    <form action="{{url_for('login')}}" method="POST">
-        <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="name" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" required>
-      
-          <button type="submit">Login</button>
-
-        </div>
-      
+  <div class="login-page">
+      <!-- need to get username and password -->
+      <form action="{{url_for('login')}}" method="POST">
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="name" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <button type="submit">Login</button>
+          </div>
       </form>
 
       <a href="{{ url_for('signUp') }}">Sign Up</a>
+    </div>
 
       <script>
         // Check if there's an error passed from the server-side
@@ -37,5 +36,22 @@
 </html>
 
 
+<br></br>
 
-
+<div class="login-page"></div>
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
