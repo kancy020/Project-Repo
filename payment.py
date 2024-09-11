@@ -28,7 +28,7 @@ class Payment:
     def __init__(self, balance) -> None:
         self.totalPrice = 0
         self.__balance = balance
-        self.items = Order.allOrder.copy()
+        self.items = []
     
 
     '''adds the orders to items list to calculate total price'''
@@ -40,13 +40,13 @@ class Payment:
         self.calculate_total_price()
         result = self.calculate_total_balance()
         if result:
-            print(result)
+            print(receipt)
         else:
-            self.receipt()
             receipt = self.receipt()
             #this ensure the lists are cleared for each transaction
             self.items.clear()
             Order.allOrder.clear()
+            return receipt
 
     '''calculates the total price for order'''
     def calculate_total_price(self):
@@ -65,12 +65,10 @@ class Payment:
 
     '''output a recipt of total cost'''
     def receipt(self):
-        receipt = {
+        return {
             "totalPrice": self.totalPrice,
-            "items": [item.get_details() for item in self.items]
+            "items": [item.get_item_details() for item in self.items]
         }
-
-        return receipt
 
 
 

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return redirect(url_for('payment_page'))
+    return redirect(url_for('receipt_page'))
 
 @app.route('/payment')
 def payment_page():
@@ -17,14 +17,19 @@ def receipt_page():
 
     payment = Payment(balance=100000)
     orders = [
-        {"name": "pokemon", "quantity": 1, "price": 10.00},
-        {"name": "fuel", "quantity": 1, "price": 50.00},
-        {"name": "donut", "quantity": 2, "price": 3.99},
-        {"name": "hot dog", "quantity": 1, "price": 10.00},
-        {"name": "milk shake", "quantity": 3, "price": 5.00}
+        Order(name="hot dog", price=3.99, quantity=3),
+        Order(name="fuel", price=70.63, quantity=1),
+        Order(name="milk shake", price=2.30, quantity=2)
     ]
 
-    return render_template("receipt.html",orders=orders)
+    for order in orders:
+        payment.add_item(order)
+
+    receipt = payment.initiate_transaction()
+    total_price = receipt['totalPrice']
+    items = receipt['items']
+    print(receipt)
+    return render_template("receipt.html", total_price=total_price, items=items)
 
 if __name__ == "__main__":
     app.run(debug=True)

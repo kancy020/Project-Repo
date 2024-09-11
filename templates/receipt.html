@@ -3,15 +3,20 @@
     <style>
         h1 {text-align: center;}
         h2 {text-align: center;}
+        h3 {text-align: center;}
 
         .wrapper{
+            text-align: center;
+        }
+
+        p{
             text-align: center;
         }
 
         table{
             margin: 0 auto;
         }
-        
+
         .button{
             bottom: 50%;
             height: 40px;
@@ -38,23 +43,35 @@
     <main>
         <h1>UTR</h1>  
         <hr>
-        <h2>Receipt: </h2>
+        <h2>Receipt</h2>
+        <p>Total Price: ${{ total_price }}</p>
+        <h3>Items:</h3>
         <div class="wrapper">
             <table>
-                <tr>
-                    <th>Orders Item</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-                {% for order in orders %}
-                <tr>
-                    <td>{{order.name}}</td>
-                    <td>{{order.quantity}}</td>
-                    <td>${{ "{:.2f}".format(order.price)}}</td>
-                    <td>${{ "{:.2f}".format(order.quantity * order.price)}}</td>
-                </tr>
-                {% endfor %}
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if items %}
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>${{ item.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.totalPrice }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No items available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
             </table>
         </div>
         <div class="wrapper">
