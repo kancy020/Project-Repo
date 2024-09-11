@@ -7,7 +7,7 @@
             {% for store in stores %}
                 <li>
                     <a href="{{ url_for('customerStoreDetails', store_id=store.id) }}">{{ store.name }}</a>
-                    - {{ store.address }}
+                    - {{ store.address }} - {{ store.opening_hours }}
                 </li>
             {% endfor %}
         </ul>

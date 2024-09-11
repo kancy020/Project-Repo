@@ -11,6 +11,7 @@ class Stores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100), nullable=False)
+    opening_hours = db.Column(db.String(50))
     petrols = db.relationship('Petrol', backref='store', lazy=True)
 
     def __repr__(self):
@@ -38,8 +39,9 @@ def addStore():
     if request.method == "POST":
         name = request.form.get('name')
         address = request.form.get('address')
+        opening_hours = request.form.get('opening_hours')
         if name and address:
-            new_store = Stores(name=name, address=address)
+            new_store = Stores(name=name, address=address, opening_hours=opening_hours)
             db.session.add(new_store)
             db.session.commit()
             return redirect(url_for('storesDisplay'))
