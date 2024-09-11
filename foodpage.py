@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -45,21 +45,21 @@ def add_to_cart(item_id):
     item = Menu.query.get_or_404(item_id)
     
     if 'cart' not in db.session:
-        db.session['cart'] = []
+        session['cart'] = []
     
-    db.session['cart'].append({
+    session['cart'].append({
         'id': item.id,
         'name': item.name,
         'price': item.price,
         'description': item.description,
     })
     
-    db.session.modified = True
+    session.modified = True
     return redirect(url_for('menu'))
 
 @app.route('/cart')
 def cart():
-    cart_items = db.session.get('cart', [])
+    cart_items = session.get('cart', [])
     return render_template('cart.html', cart_items=cart_items)
 
 if __name__ == '__main__':
