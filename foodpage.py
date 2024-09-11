@@ -44,7 +44,7 @@ def addItem():
 def add_to_cart(item_id):
     item = Menu.query.get_or_404(item_id)
     
-    if 'cart' not in db.session:
+    if 'cart' not in session:
         session['cart'] = []
     
     session['cart'].append({
