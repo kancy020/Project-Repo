@@ -38,26 +38,46 @@
         top: 100%;
       }
 
-      .banner{
-        background: red;
-        padding: 50px;
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top:0;
+        width: 100%;
       }
 
-    .banner__text{
-    font-size: 30px;
-    }
+      li {
+        float: left;
+        font-size: large;
+      }
       
-</style>
-
-</head>
-<body>
-
-    <div class="banner">
-        <div class="banner_text">
-            hello there
-        </div>
-    </div>
-
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
+  </style>
+  </head>
+   
+  <body>
+  
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">Stores</a></li>
+      <li><a href="">Fuel</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Products</a></li>
+    </ul>
+  
 
 <div class="row">
     <div class="col-sm-3"></div>
@@ -66,7 +86,7 @@
             <div class="card-body">
                 <h5 class="card-title"><b>Pump</b></h5>
                 <p class="card-text">Choose this option to set what fuel you wish to purchase and the set the amount wanted.</p>
-                <a href="#" style="color: black" class="btn-lg btn-danger">next</a>
+                <button href="#" style="background-color: #333; color:white" type="button"class="btn-lg">next</button>
             </div>
         </div>
     </div>
@@ -75,7 +95,7 @@
             <div class="card-body">
                 <h5 class="card-title"><b>Pay</b></h5>
                 <p class="card-text">Choose this option to set the price limit. make the payment through your registered payment methods.</p>
-                <a href="#" style="color: black" class="btn-lg btn-danger">next</a>
+                <button href="#" style="background-color: #333; color:white" type="button"class="btn-lg">next</button>
             </div>
         </div>
     </div>

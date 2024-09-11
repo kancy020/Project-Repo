@@ -53,51 +53,61 @@
 
     .next-button button{
         justify-content: center;
+        background-color: #333;
         width: 200px;
         height: 45px;
         font-size: 25px;
         font-weight: 900;
-        color:black; 
+        color:white; 
     }
 
-    .banner{
-        background: red;
-        padding: 50px;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top:0;
+        width: 100%;
       }
-
-    .banner__text{
-    font-size: 30px;
-    }
-
-    .reference-title{
-        text-align:center;
-        margin-top: 10;
-        margin-bottom:50px;
-    }
-
-
-
-</style>
-
-</head>
-<body>
-
-<div class="banner">
-    <div class="banner_text">
-        hello there
-    </div>
-</div>
-
-<div class="col-12">
-    <h1 class="reference-title">Please enter pump code below:</h1>
-</div>
+      
+      li {
+        float: left;
+        font-size: large;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
+  </style>
+  </head>
+   
+  <body>
+  
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">Stores</a></li>
+      <li><a href="">Fuel</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Products</a></li>
+    </ul>
+  
 
 <div class="textfield">
     <input type="text" placeholder="Example (XYZ-2W3)">  
 </div>
 
 <div class="next-button">
-    <button class="btn btn-danger" type=" button">Next</button>
+    <button class="next-button" type="button">Next</button>
 </div>
 
 </body>
