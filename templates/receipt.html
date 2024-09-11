@@ -44,7 +44,7 @@
         <h1>UTR</h1>  
         <hr>
         <h2>Receipt</h2>
-        <p>Total Price: ${{ total_price }}</p>
+        <p>Total Price: ${{ "%.2f"|format(total_price) }}</p>
         <h3>Items:</h3>
         <div class="wrapper">
             <table>
@@ -61,9 +61,9 @@
                         {% for item in items %}
                         <tr>
                             <td>{{ item.name }}</td>
-                            <td>${{ item.price }}</td>
+                            <td>${{ "%.2f"|format(item.price) }}</td>
                             <td>{{ item.quantity }}</td>
-                            <td>${{ item.totalPrice }}</td>
+                            <td>${{ "%.2f"|format(item.totalPrice) }}</td>
                         </tr>
                         {% endfor %}
                     {% else %}

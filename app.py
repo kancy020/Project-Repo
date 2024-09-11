@@ -17,9 +17,10 @@ def receipt_page():
 
     payment = Payment(balance=100000)
     orders = [
-        Order(name="hot dog", price=3.99, quantity=3),
+        Order(name="hot dog", price=4.99, quantity=3),
         Order(name="fuel", price=70.63, quantity=1),
-        Order(name="milk shake", price=2.30, quantity=2)
+        Order(name="milk shake", price=2.30, quantity=2),
+        Order(name="donut", price=2.99, quantity=2)
     ]
 
     for order in orders:
@@ -28,7 +29,6 @@ def receipt_page():
     receipt = payment.initiate_transaction()
     total_price = receipt['totalPrice']
     items = receipt['items']
-    print(receipt)
     return render_template("receipt.html", total_price=total_price, items=items)
 
 if __name__ == "__main__":
