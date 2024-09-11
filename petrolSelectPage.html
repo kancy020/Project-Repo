@@ -44,41 +44,60 @@
       line-height: 45px;
       font-size: 25px;
       text-align: left;
-      color: black;
-      background-color: red;
+      color: white;
+      background-color: #333;
       border: 2px solid transparent;
       border-radius: 5px;
       cursor: pointer;
       text-decoration: none;
     }
     .petrol-button input[type="radio"]:checked + label {
-      background-color: rgb(81, 15, 15);
+      background-color: 111(81, 15, 15);
       color: white;
     }
     .input-group {
       width: fit-content;
     }
 
-    .banner{
-      background: red;
-      padding: 50px;
-      
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      top:0;
+      width: 100%;
     }
-
-  .banner__text{
-  font-size: 30px;
-  }
     
+    li {
+      float: left;
+      font-size: large;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 20px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #111;
+    }
 </style>
-
 </head>
+ 
 <body>
 
-  <div class="banner">
-      <div class="banner_text">
-          hello there
-      </div>
-  </div>
+  <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="">Stores</a></li>
+    <li><a href="">Fuel</a></li>
+    <li><a href="">Menu</a></li>
+    <li><a href="">Products</a></li>
+  </ul>
 
 <div class="button-container">
   <div class="petrol-button">
