@@ -8,6 +8,10 @@
         .wrapper{
             text-align: center;
         }
+
+        table{
+            margin: 0 auto;
+        }
         .button{
             bottom: 50%;
             height: 40px;
@@ -28,12 +32,28 @@
         <h1>UTR</h1>  
         <hr>
         <h2>Orders: </h2>
-        <li>example item 1</li>
-        <li>example item 2</li>
-        <li>example item 3</li>
-        <li>example item 4</li>
         <div class="wrapper">
-            <button class="button">Pay Now</button>
+            <table>
+                <tr>
+                    <th>Orders Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.name}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>${{ "{:.2f}".format(order.price)}}</td>
+                    <td>{{ "{:.2f}".format(order.quantity * order.price)}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="wrapper">
+            <form action="{{ url_for('receipt_page')}}">
+                <button type="submit" class="button">Pay Now</button>
+            </form>
         </div>
         <hr>
     </main>

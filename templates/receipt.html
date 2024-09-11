@@ -38,7 +38,9 @@
         </ul>
         <li>Total: </li>
         <div class="wrapper">
-            <button class="button">Return to menu</button>
+            <form action="{{ url_for('payment_page')}}">
+                <button type="submit" class="button">Return to menu</button>
+            </form>
         </div>
         <hr>
     </main>
