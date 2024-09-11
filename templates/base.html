@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Store Management{% endblock %}</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #c92b2b;
+            }
+
+        li {
+            float: left;
+            font: bold;
+            font-size: large;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            }
+
+        
+        li a:hover {
+            background-color: #111;
+            }
+
+    </style>
 </head>
 <body>
     <header>
-        <h1>Store Management</h1>
         <nav>
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('logout') }}">logout</a></li>
             </ul>
         </nav>
+        <h1>Store Management</h1>
     </header>
     <main>
         {% block content %}
