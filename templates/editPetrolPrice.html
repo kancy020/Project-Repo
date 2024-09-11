@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Edit Petrol Price{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Edit Price for {{ petrol.name }}</h1>
+        <form action="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}" method="POST">
+            <label for="price">New Price:</label>
+            <input type="text" name="price" id="price" value="{{ petrol.price }}">
+            <input type="submit" value="Confirm" class="btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add Petrol to {{ store.name }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Add a New Petrol Type to {{ store.name }}</h1>
+        <form action="{{ url_for('addPetrol', store_id=store.id) }}" method="POST">
+            <input type="text" placeholder="Petrol Type" name="name" required>
+            <input type="number" placeholder="Petrol Price" name="price" step="0.01" required>
+            <input type="submit" value="Add Petrol Type" class="btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}

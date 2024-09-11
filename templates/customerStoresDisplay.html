@@ -1,0 +1,15 @@
+{% extends 'base_customer.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Stores</h1>
+        <ul>
+            {% for store in stores %}
+                <li>
+                    <a href="{{ url_for('customerStoreDetails', store_id=store.id) }}">{{ store.name }}</a>
+                    - {{ store.address }} - {{ store.opening_hours }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

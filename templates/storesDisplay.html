@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Stores</h1>
+        <ul>
+            {% for store in stores %}
+                <li>{{ store.name }} - {{ store.address }} - {{ store.opening_hours }}</li>
+                <a href="{{ url_for('storeDetails', store_id=store.id) }}">View Details</a>
+                <a href="{{ url_for('storeDelete', store_id=store.id) }}">Delete</a>
+            {% else %}
+                <li>No stores available</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

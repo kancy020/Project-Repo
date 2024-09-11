@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ store.name }} - Details{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>{{ store.name }} - Details</h1>
+        <a href="{{ url_for('editStore', store_id=store.id) }}">Edit Store</a>
+        <h2>Petrol Prices</h2>
+
+        {% if store.petrols|length >= 3 %}
+            <p>Store petrol type limit is 3.</p>
+        {% else %}
+            <a href="{{ url_for('addPetrol', store_id=store.id) }}">Add Petrol</a>
+        {% endif %}
+        
+        <ul>
+            {% for petrol in store.petrols %}
+            <li>
+                {{ petrol.name }}: ${{ petrol.price }}
+                <a href="{{ url_for('editPetrolPrice', petrol_id=petrol.id) }}">Edit</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+{% endblock %}
