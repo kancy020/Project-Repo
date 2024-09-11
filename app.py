@@ -41,12 +41,13 @@ def login():
             auth = Authenticator()
             auth.fillData()
             user = auth.login(username, password)
-            
+            print(user)
             if user!=None:
-                #need to pass the user object to the home page
-                #session['user'] = user
+                #converts the user object to a json string which can be passed through
                 userJson = json.dumps(user.__dict__) 
+                print(userJson)
                 session['user'] = userJson
+
                 return redirect(url_for('home'))
             
         except InvalidUsername:
@@ -55,6 +56,13 @@ def login():
             return render_template('login.html', error="Invalid password")
 
     return render_template('login.html')
+
+@app.route('/guestLogin')
+def guestLogin():
+   
+   session['user'] = json.dumps(User("Guest","noPassword",0).__dict__) 
+   print(session['user'])
+   return redirect(url_for('home'))
 
 
 @app.route('/signUp', methods=['GET', 'POST']) 
@@ -80,7 +88,14 @@ def signUp():
 def home():
     #could be error from here
     if 'user' in session:
-       print("made it here")
-       return render_template('home.html', user=session['user'])  # Pass user to template
+        #get the json user string and truns it back into a dict
+        user_dict = json.loads(session['user'])
+        return render_template('home.html', user=user_dict)  # Pass user to template
     
-    return render_template('signUp.html', error="data could not be retrieved")
+    return render_template('login.html', error="data could not be retrieved")  
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)  # Remove user from session
+    return redirect(url_for('login'))  # Redirect to the home page or login
+

@@ -10,6 +10,7 @@
 <body>
   <div class="login-page">
     <div class="pannel">
+      <h1>Login</h1>
       <!-- need to get username and password -->
       <form action="{{url_for('login')}}" method="POST">
           <div class="container">
@@ -20,7 +21,8 @@
             <button type="submit">Login</button>
           </div>
       </form>
-      <a href="{{ url_for('home') }}">Sign in as Guest</a>
+      <a href="{{ url_for('guestLogin') }}">Sign in as Guest</a>
+      <br></br>
       <a href="{{ url_for('signUp') }}">Sign Up</a>
     </div>
   </div>

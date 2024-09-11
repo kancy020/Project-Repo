@@ -27,7 +27,7 @@ class Authenticator:
         #Change the code to Database?
         if username in self.userDict:
             
-            user=self.userDict[username] #retviing the user object to do stuff with
+            user=Authenticator.userDict[username] #retviing the user object to do stuff with
             
             if user.checkPassword(password)==True:
                 print("you have logged in")
