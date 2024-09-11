@@ -76,6 +76,9 @@
                 <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">{{ item.description }}</p>
                 <p class="card-price">{{ item.price }}</p>
+                <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST">
+                  <button class="btn btn-primary" type="submit">Add to Cart</button>
+                </form>
               </div>
             </div>
           </div>
@@ -83,13 +86,10 @@
         </div>
     </div>
 
-    <div>
+    <div class="fixed-home-buttons">
       <a href="{{ url_for('addItem')}}" class='btn btn-primary'>Add Item</a>
+      <a href="{{ url_for('cart')}}" class='btn btn-primary'>View Cart</a>
     </div>
-    
-    <p align="right">
-    <a class='btn btn-primary'>Add to Cart</a>
-    </p>
 
     <div class="fixed-home-buttons">
       <button class="btn">Fuel</button>

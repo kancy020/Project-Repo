@@ -40,8 +40,8 @@ def addItem():
             return redirect(url_for('menu'))
     return render_template('addItem.html')
 
-@app.route('/add to cart/<int:item_id', methods=['POST'])
-def addToCart(item_id):
+@app.route('/add to cart/<int:item_id>', methods=['POST'])
+def add_to_cart(item_id):
     item = Menu.query.get_or_404(item_id)
     
     if 'cart' not in db.session:
@@ -56,6 +56,11 @@ def addToCart(item_id):
     
     db.session.modified = True
     return redirect(url_for('menu'))
+
+@app.route('/cart')
+def cart():
+    cart_items = db.session.get('cart', [])
+    return render_template('cart.html', cart_items=cart_items)
 
 if __name__ == '__main__':
     app.run(debug=True)
