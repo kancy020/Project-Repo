@@ -29,6 +29,11 @@ def receipt_page():
     receipt = payment.initiate_transaction()
     total_price = receipt['totalPrice']
     items = receipt['items']
+
+    #used to save point for buying prodcuts.
+    # userPoint = 1
+    # user.addPoints(userPoint)
+
     return render_template("receipt.html", total_price=total_price, items=items)
 
 if __name__ == "__main__":
