@@ -13,54 +13,43 @@
         color: white;
       }
 
-      .fixed-home-buttons {
-        justify-content: center;
-        display: flex;
-        gap: 10px;
-        padding: 20px;
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
         position: fixed;
-        top: 65vh;
-        left: 105vh;
-        transform: translate(-50%, -50%);
-      } 
+        top:0;
+        width: 100%;
+      }
       
-      .fixed-home-buttons button{
-        width: 230px;
-        height: 70px;
-        font-size: 45px;
+      li {
+        float: left;
+        font-size: large;
+      }
+      
+      li a {
+        display: block;
         color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
       }
-      .banner{
-        background: red;
-        padding: 10px;
-        opacity: 0.7;
-      }
-
-      .banner__text{
-        font-size: 30px;
+      
+      li a:hover {
+        background-color: #111;
       }
   </style>
   </head>
 
-  <div class="carousel-item active"></div>
-  <div class="container">
-
-  </div>
-
-  <div class="fixed-home-buttons">
-    <button class="btn">Fuel</button>
-    <button class="btn">Stores</button>  
-    <button class="btn">Menu</button>
-    <button class="btn">Fuel Cans</button>
-  </div>
-
-  <div class="banner">
-    <div class="banner__text">
-      <p><strong>Welcome Back!</strong></p>
-
-    </div>
-
-  </div>
+  <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="">Stores</a></li>
+    <li><a href="">Fuel</a></li>
+    <li><a href="">Menu</a></li>
+    <li><a href="">Products</a></li>
+  </ul>
 </body>
 </html>
 
