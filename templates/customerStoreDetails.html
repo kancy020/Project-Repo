@@ -1,16 +1,27 @@
 {% extends 'base_customer.html' %}
-{% block title %}Store Details{{ store.name }}{% endblock %}
+{% block title %}Store Details - {{ store.name }}{% endblock %}
 {% block content %}
-    <h1>{{ store.name }}</h1>
-    <p>Address: {{ store.address }}</p>
-    {% if store.petrols %}
-        <h2>Petrol Prices:</h2>
-        <ul>
-            {% for petrol in store.petrols %}
-                <li>{{ petrol.name }}: ${{ petrol.price }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No petrol types available.</p>
-    {% endif %}
+    <div class="container mt-5">
+        <h1>{{ store.name }}</h1>
+        <p>Address: {{ store.address }}</p>
+        {% if store.petrols %}
+            <h2>Petrol Prices:</h2>
+            <div class="button-container">
+                {% for petrol in store.petrols %}
+                <div class="petrol-button">
+                    <input type="radio" id="{{ petrol.id }}" name="fuel" />
+                    <label for="{{ petrol.id }}">{{ petrol.name }} - ${{ petrol.price }}</label>
+                </div>
+                {% endfor %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="1-100 litres" aria-label="Litre">
+                    <span class="input-group-text">Purchase</span>
+                </div>
+            </div>
+        {% else %}
+            <p>No petrol types available.</p>
+        {% endif %}
+    </div>
+    
 {% endblock %}
+
