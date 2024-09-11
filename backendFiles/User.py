@@ -6,7 +6,7 @@ class User:
         self.username= username
         self.password = self._encryptPassword(password)
         self.contactNumber = contactNumber
-        self.points = 0
+        self.points = 20000
         self.isPrefered = False
 
         if self.points>=1000:
