@@ -7,6 +7,11 @@
         .wrapper{
             text-align: center;
         }
+
+        table{
+            margin: 0 auto;
+        }
+        
         .button{
             bottom: 50%;
             height: 40px;
@@ -34,9 +39,24 @@
         <h1>UTR</h1>  
         <hr>
         <h2>Receipt: </h2>
-        <ul class="">
-        </ul>
-        <li>Total: </li>
+        <div class="wrapper">
+            <table>
+                <tr>
+                    <th>Orders Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.name}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>${{ "{:.2f}".format(order.price)}}</td>
+                    <td>${{ "{:.2f}".format(order.quantity * order.price)}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
         <div class="wrapper">
             <form action="{{ url_for('payment_page')}}">
                 <button type="submit" class="button">Return to menu</button>

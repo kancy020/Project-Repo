@@ -14,6 +14,13 @@ class Order:
     def get_total_price(self):
         return self.price * self.quantity
     
+    def get_item_details(self):
+        return{
+            "name": self.name,
+            "price": self.price,
+            "quantity": self.quantity,
+            "totalPrice": self.get_total_price()
+        }
     
 class Payment:
 
@@ -36,6 +43,7 @@ class Payment:
             print(result)
         else:
             self.receipt()
+            receipt = self.receipt()
             #this ensure the lists are cleared for each transaction
             self.items.clear()
             Order.allOrder.clear()
@@ -57,44 +65,34 @@ class Payment:
 
     '''output a recipt of total cost'''
     def receipt(self):
-        print("Transaction Complete")
-        print()
-        print("---------------------------")
-        print(f"Total: ${self.totalPrice}")
-        print()
-        for items in self.items:
-            print(f"Item Name: {items.name}\nPrice: ${items.price}\nQuantity: {items.quantity}\n")
-        print(f"balance now: {self.__balance}")
-        print("---------------------------")
-        print()
+        receipt = {
+            "totalPrice": self.totalPrice,
+            "items": [item.get_details() for item in self.items]
+        }
+
+        return receipt
 
 
 
 '''Testing order for payment'''    
-order1 = Order("Item1",10.00)
-order2 = Order("Item2",20.00,2)
+# order1 = Order("Item1",10.00)
+# order2 = Order("Item2",20.00,2)
 
-payment = Payment(1000.00)
-
-# payment.add_item(order1)
-# payment.add_item(order2)
-
-payment.initiate_transaction()
-
-order3 = Order("Item3",10.00)
+# payment = Payment(1000.00)
 
 
-payment1 = Payment(1100.00)
+# payment.initiate_transaction()
 
-# payment1.add_item(order3)
-
-payment1.initiate_transaction()
-
-order4 = Order("Item3",10.00)
+# order3 = Order("Item3",10.00)
 
 
-payment2 = Payment(1.00)
+# payment1 = Payment(1100.00)
 
-# payment2.add_item(order3)
+# payment1.initiate_transaction()
 
-payment2.initiate_transaction()
+# order4 = Order("Item3",10.00)
+
+
+# payment2 = Payment(1.00)
+
+# payment2.initiate_transaction()
