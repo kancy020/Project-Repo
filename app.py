@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from backendFiles.Authenticator import *
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stores.db'
@@ -34,10 +36,10 @@ class FoodItem(db.Model):
 
     def __repr__(self):
         return '<Name %r>' % self.id
-
+    
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/customerIndex')
 def customerIndex():
@@ -135,3 +137,71 @@ def editStore(store_id):
             return redirect(url_for('storesDisplay'))
 
     return render_template('editStore.html', store=store)
+
+
+@app.route('/login', methods=['GET','POST']) 
+def login():
+
+    if request.method == "POST":
+        username = request.form.get('name')
+        password = request.form.get('password')
+        try:
+            auth = Authenticator()
+            auth.fillData()
+            user = auth.login(username, password)
+            print(user)
+            if user!=None:
+                #converts the user object to a json string which can be passed through
+                userJson = json.dumps(user.dict) 
+                print(userJson)
+                session['user'] = userJson
+
+                return redirect(url_for('customerIndex'))
+
+        except InvalidUsername:
+            return render_template('login.html', error="Invalid username")
+        except InvalidPassword:
+            return render_template('login.html', error="Invalid password")
+
+    return render_template('login.html')
+
+
+@app.route('/guestLogin')
+def guestLogin():
+
+   session['user'] = json.dumps(User("Guest","noPassword",0).__dict) 
+   print(session['user'])
+   return redirect(url_for('customerIndex'))
+
+@app.route('/signUp', methods=['GET', 'POST']) 
+def signUp():
+    if request.method == "POST":
+        username = request.form.get('name')
+        password = request.form.get('password')
+        contactNumber= request.form.get('contactNum')
+
+        try:
+            auth = Authenticator()
+            auth.addUser(username,password,contactNumber)
+
+        except UsernameAlreadyExists:
+            return render_template('signUp.html', error="Username Already Exists")
+        except PasswordTooShort:
+            return render_template('signUp.html', error="Password Too Short")
+
+    return render_template('signUp.html')
+
+@app.route('/customerIndex', methods=['GET', 'POST']) 
+def customerIndex():
+    #could be error from here
+    if 'user' in session:
+        #get the json user string and truns it back into a dict
+        user_dict = json.loads(session['user'])
+        return render_template('home.html', user=user_dict)  # Pass user to template
+
+    return render_template('login.html', error="data could not be retrieved")
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)  # Remove user from session
+    return redirect(url_for('login'))  # Redirect to the home page or login
