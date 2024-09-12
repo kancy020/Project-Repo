@@ -31,7 +31,7 @@ def receipt_page():
     items = receipt['items']
 
     #used to save point for buying prodcuts.
-    # userPoint = 1
+    # userPoint = total_price
     # user.addPoints(userPoint)
 
     return render_template("receipt.html", total_price=total_price, items=items)
