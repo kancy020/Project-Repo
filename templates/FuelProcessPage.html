@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title style="border: black;">FuelProcessPage</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+    body{
+        background-color: rgb(238, 230, 230);
+        color: white;
+        margin: 0;
+        padding: 0;
+        }
+        
+        body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 55% 35%;
+        opacity: 0.5;
+        z-index: -1;
+        }
+
+    .card{
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        height: 13rem;
+        justify-content: center;
+        top: 100%;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top:0;
+        width: 100%;
+      }
+
+      li {
+        float: left;
+        font-size: large;
+        border-right: 1px solid #bbb;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
+  </style>
+  </head>
+   
+  <body>
+  
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">Stores</a></li>
+      <li><a href="">Fuel</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Products</a></li>
+      <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+    </ul>
+  
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><b>Pump</b></h5>
+                <p class="card-text">Choose this option to set what fuel you wish to purchase and the set the amount wanted.</p>
+                <button href="#" style="background-color: #333; color:white" type="button"class="btn-lg">next</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><b>Pay</b></h5>
+                <p class="card-text">Choose this option to set the price limit. make the payment through your registered payment methods.</p>
+                <button href="#" style="background-color: #333; color:white" type="button"class="btn-lg">next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
