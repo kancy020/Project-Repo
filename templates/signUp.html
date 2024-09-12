@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='signUp.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="signUp-page" >
+        <div class="pannel">
+
+                <!-- need to get username and password -->
+                <form action="{{url_for('signUp')}}" method="POST">
+                    
+
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="name" required>
+                
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                        
+                    <label for="contactNum"><b>Mobile Number </b></label>
+                    <input type="text" placeholder="Enter Contact Number" name="contactNum" required>
+                    
+                    <button type="submit">Create Account</button>
+                    
+                
+                </form>
+                <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+   
+
+      
+
+      <script>
+        // Check if there's an error passed from the server-side
+        var error = "{{ error }}";
+        if (error) {
+            alert(error);
+        }
+
+      </script>
+</body>
+</html>
+
+
+
+

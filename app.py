@@ -5,6 +5,7 @@ import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stores.db'
+app.secret_key = 'key'
 # Initalise DB
 db = SQLAlchemy(app)
 
@@ -40,10 +41,6 @@ class FoodItem(db.Model):
 @app.route('/')
 def index():
     return render_template('login.html')
-
-@app.route('/customerIndex')
-def customerIndex():
-    return render_template('customerIndex.html')
 
 @app.route('/addStore', methods=['GET','POST'])
 def addStore():
@@ -138,7 +135,6 @@ def editStore(store_id):
 
     return render_template('editStore.html', store=store)
 
-
 @app.route('/login', methods=['GET','POST']) 
 def login():
 
@@ -152,7 +148,7 @@ def login():
             print(user)
             if user!=None:
                 #converts the user object to a json string which can be passed through
-                userJson = json.dumps(user.dict) 
+                userJson = json.dumps(user.__dict__) 
                 print(userJson)
                 session['user'] = userJson
 
@@ -165,11 +161,10 @@ def login():
 
     return render_template('login.html')
 
-
 @app.route('/guestLogin')
 def guestLogin():
 
-   session['user'] = json.dumps(User("Guest","noPassword",0).__dict) 
+   session['user'] = json.dumps(User("Guest","noPassword",0).__dict__) 
    print(session['user'])
    return redirect(url_for('customerIndex'))
 
@@ -197,7 +192,7 @@ def customerIndex():
     if 'user' in session:
         #get the json user string and truns it back into a dict
         user_dict = json.loads(session['user'])
-        return render_template('home.html', user=user_dict)  # Pass user to template
+        return render_template('customerIndex.html', user=user_dict)  # Pass user to template
 
     return render_template('login.html', error="data could not be retrieved")
 

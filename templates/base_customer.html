@@ -95,10 +95,11 @@
         <div style="background-color: #333 ;"class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
-            <a href="{{ url_for('index') }}">Store Management View</a></li>
+            <a href="{{ url_for('index') }}">Store Management View</a>
             <a href="">Menu</a>
             <a href="">Products</a>
             <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+            <a href="{{ url_for('logout') }}">Logout</a>
           </div>
     </header>
     <main>
