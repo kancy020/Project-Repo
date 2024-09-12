@@ -126,3 +126,12 @@ def editStore(store_id):
             return redirect(url_for('storesDisplay'))
 
     return render_template('editStore.html', store=store)
+
+@app.route('/PumpAndpayPage')
+def fuelprocess():
+    return render_template('PumpAndpayPage.html')
+
+@app.route('/FuelProcessPage')
+def fuelprocess():
+    return render_template('FuelProcessPage')
+
