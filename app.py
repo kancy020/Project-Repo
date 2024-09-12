@@ -26,6 +26,15 @@ class Petrol(db.Model):
     def __repr__(self):
         return '<Name %s, Price %s>' % (self.name, self.price)
     
+class FoodItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(200), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return '<Name %r>' % self.id
+
 @app.route('/')
 def index():
     return render_template('index.html')
