@@ -3,11 +3,15 @@
 {% block content %}
     <div class="container">
         <h1>Stores</h1>
-        <ul>
+        <ul class="list-unstyled">
             {% for store in stores %}
-                <li>{{ store.name }} - {{ store.address }} - {{ store.opening_hours }}</li>
-                <a href="{{ url_for('storeDetails', store_id=store.id) }}">View Details</a>
-                <a href="{{ url_for('storeDelete', store_id=store.id) }}">Delete</a>
+                <li class="store-item mb-3">
+                    <div class="store-info">
+                        <span>{{ store.name }} - {{ store.address }} - {{ store.opening_hours }}</span>
+                        <a href="{{ url_for('storeDetails', store_id=store.id) }}">View Details</a>
+                        <a href="{{ url_for('storeDelete', store_id=store.id) }}">Delete</a>
+                    </div>
+                </li>
             {% else %}
                 <li>No stores available</li>
             {% endfor %}

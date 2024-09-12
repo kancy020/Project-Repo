@@ -59,7 +59,7 @@ def addStore():
 @app.route('/storesDisplay')
 def storesDisplay():
     title = "Store List"
-    stores = Stores.query.all()
+    stores = Stores.query.order_by(Stores.name.asc()).all()
     return render_template("storesDisplay.html", title=title, stores=stores)
 
 @app.route('/storeDetails/<int:store_id>')
