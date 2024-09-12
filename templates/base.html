@@ -63,17 +63,19 @@
     }
   </style>
 </head>
+
 <body>
     <header>
         <h1>Store Management</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('storesDisplay') }}">All Stores</a></li>
-                <li><a href="{{ url_for('addStore') }}">Add Store</a></li>
-                <li><a href="{{ url_for('customerIndex') }}">Customer View</a></li>
-            </ul>
-        </nav>
+        <div class="navbar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('storesDisplay') }}">All Stores</a>
+            <a href="{{ url_for('addStore') }}">Add Store</a>
+            <a href="{{ url_for('customerIndex') }}">Customer View</a>
+            <li><a href="">Menu</a></li>
+            <li><a href="">Products</a></li>
+            <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+        </div>
     </header>
     <main>
         {% block content %}
