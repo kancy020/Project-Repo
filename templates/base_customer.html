@@ -13,6 +13,13 @@
       gap: 30px;
     }
 
+    .panel {
+        background: #FFFFFF;
+        padding: 45px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        color: black;
+    }
+
     .service-buttons button {
       width: 300px;
       height: 60px;
@@ -61,18 +68,36 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
+
+    li {
+        float: left;
+        font-size: large;
+        border-right: 1px solid #bbb;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
   </style>
 </head>
 
 <body>
     <header>
         <h1>UTR Homepage</h1>
-        <div class="navbar">
+        <div style="background-color: #333 ;"class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
             <a href="{{ url_for('index') }}">Store Management View</a></li>
-            <li><a href="">Menu</a></li>
-            <li><a href="">Products</a></li>
+            <a href="">Menu</a>
+            <a href="">Products</a>
             <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
           </div>
     </header>
