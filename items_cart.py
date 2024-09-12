@@ -36,11 +36,11 @@ class cartItem(ABC):
     @property
     def _quantity(self):
         return self.__quantity
-    '''
+    
     @_quantity.setter
     def _quantity(self, value):
         self.__quantity = value
-    '''
+    
     @property
     def _itemType(self):
         return self.__itemType
