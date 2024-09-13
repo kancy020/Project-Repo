@@ -68,6 +68,24 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
+
+    li {
+        float: left;
+        font-size: large;
+        border-right: 1px solid #bbb;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
   </style>
 </head>
 
@@ -79,7 +97,6 @@
             <a href="{{ url_for('addStore') }}">Add Store</a>
             <a href="{{ url_for('loginForCustomer') }}">Customer View</a>
             <li><a href="">Menu</a></li>
-            <li><a href="">Products</a></li>
         </div>
     </header>
     <main>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Store Management</title>
+  <title>UTR Portal</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
@@ -14,10 +14,15 @@
     }
 
     .panel {
-        background: #FFFFFF;
-        padding: 45px;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        color: black;
+    background: #FFFFFF;
+    padding: 45px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.24);
+    color: black;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
     }
 
     .service-buttons button {
@@ -91,12 +96,11 @@
 
 <body>
     <header>
-        <div style="background-color: #333 ;"class="navbar">
+        <div style="background-color: #333;" class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
             <a href="{{ url_for('loginForManager') }}">Store Management View</a>
             <a href="">Menu</a>
-            <a href="">Products</a>
             <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
             <a href="{{ url_for('logout') }}">Logout</a>
           </div>
@@ -106,7 +110,7 @@
             {% block content %}
             {% endblock %}
         </div>
-        
+
     </main>
 </body>
 </html>
