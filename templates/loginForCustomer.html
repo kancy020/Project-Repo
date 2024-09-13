@@ -12,7 +12,7 @@
     <div class="pannel">
       <h1>Login</h1>
       <!-- need to get username and password -->
-      <form action="{{url_for('login')}}" method="POST">
+      <form action="{{url_for('loginForCustomer')}}" method="POST">
           <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="name" required>
@@ -21,9 +21,12 @@
             <button type="submit">Login</button>
           </div>
       </form>
+      <br></br>
       <a href="{{ url_for('guestLogin') }}">Sign in as Guest</a>
       <br></br>
       <a href="{{ url_for('signUp') }}">Sign Up</a>
+      <br></br>
+      <a href="{{ url_for('loginForManager') }}">Manager Login</a>
     </div>
   </div>
 

@@ -40,7 +40,7 @@ class FoodItem(db.Model):
     
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('loginForCustomer.html')
 
 @app.route('/addStore', methods=['GET','POST'])
 def addStore():
@@ -135,8 +135,8 @@ def editStore(store_id):
 
     return render_template('editStore.html', store=store)
 
-@app.route('/login', methods=['GET','POST']) 
-def login():
+@app.route('/loginForCustomer', methods=['GET','POST']) 
+def loginForCustomer():
 
     if request.method == "POST":
         username = request.form.get('name')
@@ -155,11 +155,11 @@ def login():
                 return redirect(url_for('customerIndex'))
 
         except InvalidUsername:
-            return render_template('login.html', error="Invalid username")
+            return render_template('loginForCustomer.html', error="Invalid username")
         except InvalidPassword:
-            return render_template('login.html', error="Invalid password")
+            return render_template('loginForCustomer.html', error="Invalid password")
 
-    return render_template('login.html')
+    return render_template('loginForCustomer.html')
 
 @app.route('/guestLogin')
 def guestLogin():
@@ -168,7 +168,7 @@ def guestLogin():
    print(session['user'])
    return redirect(url_for('customerIndex'))
 
-@app.route('/signUp', methods=['GET', 'POST']) 
+@app.route('/signUp', methods=['GET', 'POST'])
 def signUp():
     if request.method == "POST":
         username = request.form.get('name')
@@ -194,9 +194,43 @@ def customerIndex():
         user_dict = json.loads(session['user'])
         return render_template('customerIndex.html', user=user_dict)  # Pass user to template
 
-    return render_template('login.html', error="data could not be retrieved")
+    return render_template('loginForCustomer.html', error="data could not be retrieved")
+
+@app.route('/managerIndex', methods=['GET', 'POST'])
+def managerIndex():
+    if 'user' in session:
+        user_dict = json.loads(session['user'])
+        return render_template('managerIndex.html', user=user_dict)  # Pass user to template
+
+    return render_template('loginForManager.html', error="data could not be retrieved")
+
+@app.route('/loginForManager', methods=['GET','POST']) 
+def loginForManager():
+
+    if request.method == "POST":
+        username = request.form.get('name')
+        password = request.form.get('password')
+        try:
+            auth = Authenticator()
+            auth.fillData()
+            user = auth.login(username, password)
+            print(user)
+            if user!=None:
+                #converts the user object to a json string which can be passed through
+                userJson = json.dumps(user.__dict__) 
+                print(userJson)
+                session['user'] = userJson
+
+                return redirect(url_for('managerIndex'))
+
+        except InvalidUsername:
+            return render_template('loginForManager.html', error="Invalid username")
+        except InvalidPassword:
+            return render_template('loginForManager.html', error="Invalid password")
+
+    return render_template('loginForManager.html')
 
 @app.route('/logout')
 def logout():
     session.pop('user', None)  # Remove user from session
-    return redirect(url_for('login'))  # Redirect to the home page or login
+    return redirect(url_for('loginForCustomer'))  # Redirect to the home page or login
