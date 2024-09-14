@@ -128,8 +128,12 @@ def editStore(store_id):
 
     if request.method == "POST":
         new_name = request.form.get('name')
-        if new_name:
+        new_opening_hours = request.form.get('opening_hours')
+        new_address = request.form.get('address')
+        if new_name or new_opening_hours or new_address:
             store.name = new_name
+            store.opening_hours = new_opening_hours
+            store.address = new_address
             db.session.commit()
             return redirect(url_for('storesDisplay'))
 
