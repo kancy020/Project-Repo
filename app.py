@@ -235,12 +235,17 @@ def logout():
     session.pop('user', None)  # Remove user from session
     return redirect(url_for('loginForCustomer'))  # Redirect to the home page or login
 
-
 @app.route('/menuList')
 def menuList():
     title = "Food List"
     food_items = FoodItem.query.all()
     return render_template('menuList.html', title=title, food_items=food_items)
+
+@app.route('/customerMenuList')
+def customerMenuList():
+    title = "Food List"
+    food_items = FoodItem.query.all()
+    return render_template('customerMenuList.html', title=title, food_items=food_items)
 
 @app.route('/addFoodItem', methods=['GET','POST'])
 def addFoodItem():
@@ -254,3 +259,4 @@ def addFoodItem():
             db.session.commit()
             return redirect(url_for('menuList'))
     return render_template('addFoodItem.html')
+
