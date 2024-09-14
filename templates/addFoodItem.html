@@ -1,0 +1,13 @@
+{% extends 'base_manager.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Add a New Food Item</h1>
+        <form action="/addFoodItem" method="POST">
+            <input type="text" placeholder="Food Name" name="name" required>
+            <input type="text" placeholder="Food Description" name="description" required>
+            <input type="text" placeholder="Food Price" name="price">
+            <input type="submit" value="Add Food Item" class="btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}
