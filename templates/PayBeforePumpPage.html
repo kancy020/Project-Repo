@@ -39,7 +39,7 @@
         justify-content: center;
         width: 405px;
         height: 70px;
-        font-size: 40px;
+        font-size: 28px;
         font-weight: 1000;
         color:black;    
         background-color: white; 
@@ -105,14 +105,24 @@
   
 
 <div class="textfield">
-    <input type="text" placeholder="Example (XYZ-2W3)">  
+    <input type="text" id="dollarAmount" placeholder="Enter dollar amount $100.00" oninput="checkInput">  
 </div>
 
 <div class="next-button">
-  <a href="/choises">
-    <button class="next-button" type="button">Next</button>
-  </a>
+    <button class="next-button" id="nextButton" type="button">Pay Now</button>
 </div>
 
+<script>
+function checkInput(){
+    var textInput = document.getElementById('dollarAmount').value;
+    var button = document.getElementById('nextButton');
+
+    if (dollarAmount.trim() !== ""){
+        button.disabled = false;
+    } else {
+        button.disabled = true;
+    }
+    }
+</script>
 </body>
 </html>

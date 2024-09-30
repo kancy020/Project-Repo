@@ -105,7 +105,7 @@
   {% for petrol in petrolTypes %}
   <div class="petrol-button">
     <input type="radio" id="{{ petrol.id }}" name="fuel" />
-    <label for="{{ petrol.id }}">{{ petrol.name }} - $</label>
+    <label for="{{ petrol.id }}">{{ petrol.name }}  ${{ petrol.price }}</label>
   </div>
   {% endfor %}
   <div class="input-group mb-3">
