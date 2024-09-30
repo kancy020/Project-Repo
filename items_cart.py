@@ -1,6 +1,4 @@
-from abc import ABC, abstractmethod
-
-class cartItem(ABC):
+class cartItem():
 
     def __init__(self, itemName, itemID, price, quantity, itemType = 'Item') :
         self.__itemName = itemName
