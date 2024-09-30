@@ -102,30 +102,12 @@
   </ul>
 
 <div class="button-container">
+  {% for petrol in petrolTypes %}
   <div class="petrol-button">
-    <input type="radio" id="e10" name="fuel" />
-    <label for="e10">E10 - $</label>
+    <input type="radio" id="{{ petrol.id }}" name="fuel" />
+    <label for="{{ petrol.id }}">{{ petrol.name }} - $</label>
   </div>
-  <div class="petrol-button">
-    <input type="radio" id="unleaded91" name="fuel" />
-    <label for="unleaded91">Unleaded 91 - $</label>
-  </div>
-  <div class="petrol-button">
-    <input type="radio" id="unleaded95" name="fuel" />
-    <label for="unleaded95">Unleaded 95 - $</label>
-  </div>
-  <div class="petrol-button">
-    <input type="radio" id="unleaded98" name="fuel" />
-    <label for="unleaded98">Unleaded 98 - $</label>
-  </div>
-  <div class="petrol-button">
-    <input type="radio" id="diesel" name="fuel" />
-    <label for="diesel">Diesel - $</label>
-  </div>
-  <div class="petrol-button">
-    <input type="radio" id="premiumDiesel" name="fuel" />
-    <label for="premiumDiesel">Premium Diesel - $</label>
-  </div>
+  {% endfor %}
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="1-100 litres" aria-label="Litre">
     <span class="input-group-text">litre/s.</span>
