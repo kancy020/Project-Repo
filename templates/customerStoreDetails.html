@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,39 +58,11 @@
     .input-group {
       width: fit-content;
     }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-      position: fixed;
-      top:0;
-      width: 100%;
-    }
-    
-    li {
-      float: left;
-      font-size: large;
-      border-right: 1px solid #bbb;
-    }
-    
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 20px 16px;
-      text-decoration: none;
-    }
-    
-    li a:hover {
-      background-color: #111;
-    }
 </style>
 </head>
  
 <body>
+
 
 <div class="button-container">
   {% for petrol in petrolTypes %}
@@ -108,15 +79,17 @@
 </body>
 </html>
 
-=======
->>>>>>> dd9e98d4b9302c52ca6b26f791281104e8d6f02d
 {% extends 'base_customer.html' %}
+
 {% block title %}Store Details - {{ store.name }}{% endblock %}
+
 {% block content %}
+
     <div class="container mt-5">
         <h1>{{ store.name }}</h1>
         <p>Address: {{ store.address }}</p>
         <p>Opening Hours: {{ store.opening_hours }}</p>
+
         {% if store.petrols %}
             <h2>Petrol Prices:</h2>
             <div class="button-container">
