@@ -1,21 +1,27 @@
 {% extends 'base_customer.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-    <div class="container">
-        <h1>Food Items</h1>
-        <ul class="list-unstyled">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-dark">Food Items</h1>
+        <div class="row">
             {% for food in food_items %}
-                <li class="store-item mb-3">
-                    <div class="store-info">
-                        <span>{{ food.name }} - {{ food.description }} - ${{ food.price }}</span>
-                        <form action="{{ url_for('addToCart', item_id=food.id) }}" method="POST">
-                            <button class="btn btn-primary" type="submit">Add to Cart</button>
-                          </form>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-dark">
+                            <h5 class="card-title">{{ food.name }}</h5>
+                            <p class="card-text">{{ food.description }}</p>
+                            <p class="card-text font-weight-bold">${{ food.price }}</p>
+                            <form action="{{ url_for('addToCart', item_id=food.id) }}" method="POST">
+                                <button class="btn btn-primary btn-block" type="submit">Add to Cart</button>
+                            </form>
+                        </div>
                     </div>
-                </li>
+                </div>
             {% else %}
-                <li>No food items available</li>
+                <div class="col-12">
+                    <p class="text-center">No food items available</p>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 {% endblock %}
