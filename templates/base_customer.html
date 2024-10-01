@@ -7,48 +7,95 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
-    body{
-      background-color: rgb(238, 230, 230);
-      color: white;
+  body{
+    background-color: rgb(238, 230, 230);
+    color: white;
+    margin: 0;
+    padding: 0px;
+    padding-top: 70px;
+    }
+    
+    body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 55% 35%;
+    opacity: 0.5;
+    z-index: -1;
+    }
+
+    ul {
+      list-style-type: none;
       margin: 0;
       padding: 0;
-      }
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      top:0;
+      width: 100%;
+      height: 67px;
+      z-index: 1000;
+    }
       
-      body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 55% 35%;
-      opacity: 0.5;
-      z-index: -1;
+    li {
+      float: left;
+      font-size: large;
+      border-right: 1px solid #bbb;
+      length: 100%
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 20px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #111;
+    }
+
+    .panel {
+      background: #FFFFFF;
+      padding: 100px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.24);
+      color: black;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      overflow: hidden;
+      z-index: 1;
       }
   </style>
 </head>
-
 <body>
-    <header>
-        <h1>UTR</h1>
-        <div style="background-color: #333 ;"class="navbar">
-            <a href="{{ url_for('customerIndex') }}">Home</a>
-            <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
-            <a href="{{ url_for('index') }}">Store Management View</a></li>
-            <a href="">Menu</a>
-            <a href="">Products</a>
-            <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+      <header>
+        <div class="nav">
+            <ul>
+                <li><a href="{{ url_for('customerIndex') }}">Home</a></li>
+                <li><a href="{{ url_for('customerStoresDisplay') }}">Stores</a></li>
+                <li><a href="{{ url_for('index') }}">Store Management View</a></li>
+                <li><a href="">Menu</a></li>
+                <li><a href="">Products</a></li>
+                <li style="padding: 14px; border-right: 1px solid #333"><h2>Welcome to UTR</h2></li>
+                <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        <main>
+          <div class="panel">
+              {% block content %}
+              {% endblock %}
           </div>
-    </header>
-    <main>
-        <div class="panel">
-            {% block content %}
-            {% endblock %}
-        </div>
-        
-    </main>
+      </main>
 </body>
 </html>
