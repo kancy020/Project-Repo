@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, #f44336, #ff8e53);
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ffffff;
+            }
+
+            main {
+                max-width: 800px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                color: #333;
+            }
+
+            h1 {
+                font-size: 2.5em;
+                color: #f44336;
+                margin-bottom: 5px;
+            }
+
+            h2, h3 {
+                color: #555;
+                margin: 15px 0;
+            }
+
+            p {
+                font-size: 1.2em;
+                margin: 15px 0;
+                color: #333;
+            }
+
+            table {
+                width: 90%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+                color: #333;
+            }
+
+            th {
+                background-color: #f44336;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .button {
+                height: 40px;
+                width: 150px;
+                border-radius: 20px;
+                background-color: #f44336;
+                color: white;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 20px 0;
+                cursor: pointer;
+                border: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .button:hover {
+                background-color: #d32f2f;
+            }
+
+            .wrapper {
+                margin: 20px 0;
+            }
+
+
+    </style>
+  <head>
+  </head>
+  <body>
+    <main>
+        <h1>UTR</h1>  
+        <hr>
+        <h2>Receipt</h2>
+        <p>Total Price: ${{ "%.2f"|format(total_price) }}</p>
+        <h3>Items:</h3>
+        <div class="wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if items %}
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>${{ "%.2f"|format(item.price) }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ "%.2f"|format(item.totalPrice) }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No items available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="wrapper">
+            <form action="{{ url_for('payment_page')}}">
+                <button type="submit" class="button">Return to menu</button>
+            </form>
+        </div>
+        <hr>
+    </main>
+  </body>
+</html>
