@@ -309,17 +309,14 @@ def addFoodItem():
 def addToCart(item_id):
     item = FoodItem.query.get_or_404(item_id)
     
-    if 'cart' not in session:
-        session['cart'] = []
+    if item:
+        item_name = item.name
+        item_price = item.price
+        item_quantity = 1
+        
+        my_cart.add(cartItem(item_name, item_id, item_price, item_quantity))
     
-    session['cart'].append({
-        'name': item.name,
-        'price': item.price,
-        'description': item.description,
-    })
-    
-    session.modified = True
-    return redirect(url_for('cart'))
+    return redirect(url_for('customerMenuList'))
 
 @app.route('/cart')
 def cart():
