@@ -6,27 +6,6 @@
   <title>PetrolSelectingPage</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <style>
-    body{
-      background-color: rgb(238, 230, 230);
-      color: white;
-      margin: 0;
-      padding: 0;
-      }
-      
-      body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 55% 35%;
-      opacity: 0.5;
-      z-index: -1;
-      }
     .button-container {
       display: flex;
       flex-direction: column;
@@ -58,6 +37,10 @@
     .input-group {
       width: fit-content;
     }
+
+    petrol-button a:hover {
+      background-color: #000;
+    }
 </style>
 </head>
  
@@ -71,10 +54,6 @@
     <label for="{{ petrol.id }}">{{ petrol.name }}  ${{ petrol.price }}</label>
   </div>
   {% endfor %}
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="1-100 litres" aria-label="Litre">
-    <span class="input-group-text">litre/s.</span>
-  </div>
 </div>
 </body>
 </html>
