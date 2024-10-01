@@ -1,4 +1,4 @@
 
-.backendFiles/__pycache__/*
+backendFiles/__pycache__/*
 __pycache__/*
 .venv/*
