@@ -5,6 +5,9 @@ from items_cart import cartItem
 
 app = Flask(__name__)
 
+# create global cart object
+my_cart = cart()
+
 # Sample data for testing
 my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
 my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
