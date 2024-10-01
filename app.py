@@ -272,12 +272,18 @@ def addToCart(item_id):
     if 'cart' not in session:
         session['cart'] = []
     
-    session['cart'].append({
-        'name': item.name,
-        'price': item.price,
-        'description': item.description,
-    })
-    
+    for cart_item in session['cart']:
+        if cart_item['name'] == item.name:
+            cart_item['quantity'] += 1
+            break
+    else:
+        session['cart'].append({
+            'name': item.name,
+            'price': item.price,
+            'description': item.description,
+            'quantity': 1,
+        })
+        
     session.modified = True
     return redirect(url_for('cart'))
 
@@ -286,47 +292,43 @@ def cart():
     cart_items = session.get('cart', [])
     return render_template('cart.html', cart_items=cart_items)
 
-@app.route('/payment', methods=['GET', 'POST'])
-def payment_page():
-    if request.method == "POST":
-        user_balance = 100.00
-        payment = Payment(balance = user_balance)
+@app.route('/receipt', methods=['GET', 'POST'])
+def receiptPage():
+    if 'cart' not in session:
+        return redirect(url_for('paymentPage'))
+    
+    total_price = 0
+    items = []
 
-        cart_items = session.get('cart', [])
-        for item in cart_items:
-            order = Order(name = item['name'], price=item['price'], quantity = 1)
-            payment.add_item(order)
+    for item in session['cart']:
+        item_total = item['price'] * 1 # For now assumes quantity is 1
+        total_price += item_total
+        items.append({
+            'name': item['name'],
+            'price': item['price'],
+            'totalPrice': item_total,
+            'quantity': 1,
+        })
 
-        receipt = payment.initiate_transaction()
-
-        if isinstance(receipt, str):
-            return render_template("paymentPage.html")
-        
-        total_price = receipt['totalPrice']
-        items = receipt['items']
     return render_template("receipt.html", total_price = total_price, items = items)
 
+    # payment = Payment(balance=100000)
+    # orders = [
+    #     Order(name="hot dog", price=4.99, quantity=3),
+    #     Order(name="fuel", price=70.63, quantity=1),
+    #     Order(name="milk shake", price=2.30, quantity=2),
+    #     Order(name="donut", price=2.99, quantity=2)
+    # ]
 
-@app.route('/receipt', methods=['GET', 'POST'])
-def receipt_page():
+    # for order in orders:
+    #     payment.add_item(order)
 
-    payment = Payment(balance=100000)
-    orders = [
-        Order(name="hot dog", price=4.99, quantity=3),
-        Order(name="fuel", price=70.63, quantity=1),
-        Order(name="milk shake", price=2.30, quantity=2),
-        Order(name="donut", price=2.99, quantity=2)
-    ]
+    # receipt = payment.initiate_transaction()
+    # total_price = receipt['totalPrice']
+    # items = receipt['items']
 
-    for order in orders:
-        payment.add_item(order)
+    # #used to save point for buying prodcuts.
+    # # userPoint = total_price
+    # # user.addPoints(userPoint)
 
-    receipt = payment.initiate_transaction()
-    total_price = receipt['totalPrice']
-    items = receipt['items']
-
-    #used to save point for buying prodcuts.
-    # userPoint = total_price
-    # user.addPoints(userPoint)
-
-    return render_template("receipt.html", total_price=total_price, items=items)
+    # return render_template("receipt.html", total_price=total_price, items=items)

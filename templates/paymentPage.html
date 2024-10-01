@@ -40,18 +40,18 @@
                     <th>Price</th>
                     <th>Total</th>
                 </tr>
-                {% for order in orders %}
+                {% for item in cart_items %}
                 <tr>
-                    <td>{{order.name}}</td>
-                    <td>{{order.quantity}}</td>
-                    <td>${{ "{:.2f}".format(order.price)}}</td>
-                    <td>${{ "{:.2f}".format(order.quantity * order.price)}}</td>
+                    <td>{{ item['name'] }}</td>
+                    <td>{{ item.get('quantity', 0) }}</td>
+                    <td>${{ "{:.2f}".format(item['price']) }}</td>
+                    <td>${{ "{:.2f}".format( item.get('quantity', 0) * item['price'] )}}</td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
         <div class="wrapper">
-            <form action="{{ url_for('receipt_page')}}">
+            <form action="{{ url_for('receiptPage')}}">
                 <button type="submit" class="button">Pay Now</button>
             </form>
         </div>
