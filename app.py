@@ -264,23 +264,23 @@ def addFoodItem():
             return redirect(url_for('menuList'))
     return render_template('addFoodItem.html')
 
-# @app.route('/add to cart/<int:item_id>', methods=['POST'])
-# def add_to_cart(item_id):
-#     item = Stores.query.get_or_404(item_id)
+@app.route('/addToCart/<int:item_id>', methods=['POST'])
+def addToCart(item_id):
+    item = FoodItem.query.get_or_404(item_id)
     
-#     if 'cart' not in session:
-#         session['cart'] = []
+    if 'cart' not in session:
+        session['cart'] = []
     
-#     session['cart'].append({
-#         'name': item.name,
-#         'price': item.price,
-#         'description': item.description,
-#     })
+    session['cart'].append({
+        'name': item.name,
+        'price': item.price,
+        'description': item.description,
+    })
     
-#     session.modified = True
-#     return redirect(url_for('menu'))
+    session.modified = True
+    return redirect(url_for('cart'))
 
-# @app.route('/cart')
-# def cart():
-#     cart_items = session.get('cart', [])
-#     return render_template('cart.html', cart_items=cart_items)
+@app.route('/cart')
+def cart():
+    cart_items = session.get('cart', [])
+    return render_template('cart.html', cart_items=cart_items)
