@@ -23,7 +23,7 @@ def view_cart():
 @app.route('/cart/update_quantity', methods=['POST'])
 def update_quantity():
     item_id = request.form.get('item_id')
-    new_quantity = int(request.form.get('quantity'))
+    new_quantity = float(request.form.get('quantity'))
     
     for item in my_cart.cart_list:
         if item._itemID == item_id:
