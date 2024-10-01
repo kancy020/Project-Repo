@@ -1,0 +1,31 @@
+{% extends 'base_customer.html' %}
+{% block title %}Welcome to UTR{% endblock %}
+{% block content %}
+<body>
+  <h1 class="text-center text-white">Your Cart</h1>
+  <div class="container mt-4">
+    <ul class="list-group">
+      {% for item in cart_items %}
+      <li class="list-group-item">
+          <h5>{{ item.name }} - ${{ item.price }}</h5>
+          <p>{{ item.description }}</p>
+      </li>
+      {% else %}
+      <li class="list-group-item">Your cart is empty.</li>
+      {% endfor %}
+    </ul>
+
+    <div class="mt-4">
+        <label for="orderType">Choose Order Type:</label>
+        <select name="orderType" id="orderType" class="form-control">
+            <option value="pickup">Pickup</option>
+            <option value="delivery">Delivery</option>
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-primary">Back to Menu</a>
+    </div>
+  </div>
+</body>
+</html>
