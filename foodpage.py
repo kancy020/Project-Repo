@@ -48,7 +48,6 @@ def add_to_cart(item_id):
         session['cart'] = []
     
     session['cart'].append({
-        'id': item.id,
         'name': item.name,
         'price': item.price,
         'description': item.description,
