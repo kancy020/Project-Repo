@@ -286,19 +286,28 @@ def cart():
     cart_items = session.get('cart', [])
     return render_template('cart.html', cart_items=cart_items)
 
-
-
-
-
-@app.route("/")
-def home():
-    return redirect(url_for('receipt_page'))
-
-@app.route('/payment')
+@app.route('/payment', methods=['GET', 'POST'])
 def payment_page():
-    return render_template("paymentPage.html")
+    if request.method == "POST":
+        user_balance = 100.00
+        payment = Payment(balance = user_balance)
 
-@app.route('/receipt')
+        cart_items = session.get('cart', [])
+        for item in cart_items:
+            order = Order(name = item['name'], price=item['price'], quantity = 1)
+            payment.add_item(order)
+
+        receipt = payment.initiate_transaction()
+
+        if isinstance(receipt, str):
+            return render_template("paymentPage.html")
+        
+        total_price = receipt['totalPrice']
+        items = receipt['items']
+    return render_template("receipt.html", total_price = total_price, items = items)
+
+
+@app.route('/receipt', methods=['GET', 'POST'])
 def receipt_page():
 
     payment = Payment(balance=100000)
@@ -321,6 +330,3 @@ def receipt_page():
     # user.addPoints(userPoint)
 
     return render_template("receipt.html", total_price=total_price, items=items)
-
-if __name__ == "__main__":
-    app.run(debug=True)
