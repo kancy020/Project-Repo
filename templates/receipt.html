@@ -1,41 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
     <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-        h3 {text-align: center;}
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, #f44336, #ff8e53);
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ffffff;
+            }
 
-        .wrapper{
-            text-align: center;
-        }
+            main {
+                max-width: 800px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                color: #333;
+            }
 
-        p{
-            text-align: center;
-        }
+            h1 {
+                font-size: 2.5em;
+                color: #f44336;
+                margin-bottom: 5px;
+            }
 
-        table{
-            margin: 0 auto;
-        }
+            h2, h3 {
+                color: #555;
+                margin: 15px 0;
+            }
 
-        .button{
-            bottom: 50%;
-            height: 40px;
-            width: 90px;
-            border-radius: 12px;
-            background-color: #f44336;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin: 20px 0px;
-            cursor: pointer;
-        }
+            p {
+                font-size: 1.2em;
+                margin: 15px 0;
+                color: #333;
+            }
 
-        li{
-            text-align: center; 
-            list-style-type: none;
-            margin: 0;
-            padding-left: 5;
-        }
+            table {
+                width: 90%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+                color: #333;
+            }
+
+            th {
+                background-color: #f44336;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .button {
+                height: 40px;
+                width: 150px;
+                border-radius: 20px;
+                background-color: #f44336;
+                color: white;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 20px 0;
+                cursor: pointer;
+                border: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .button:hover {
+                background-color: #d32f2f;
+            }
+
+            .wrapper {
+                margin: 20px 0;
+            }
+
+            hr {
+                border: none;
+                height: 1px;
+                background: #ddd;
+                margin: 30px 0;
+            }
     </style>
   <head>
   </head>
