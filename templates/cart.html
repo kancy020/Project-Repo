@@ -27,7 +27,7 @@
                     <form action="{{ url_for('update_quantity') }}" method="POST">
                         <input type="hidden" name="item_id" value="{{ item._itemID }}">
                         <input type="number" name="quantity" value="{{ item._quantity }}" step="0.01" min="1">
-                        <button type="submit">Update</button>
+                        <button type="submit" class="btn btn-secondary">Update</button>
                     </form>
                 </td>
                 <td>${{ item._price * item._quantity|round(2) }}</td>
@@ -46,7 +46,7 @@
                     <form action="{{ url_for('update_quantity') }}" method="POST">
                         <input type="hidden" name="item_id" value="{{ item._itemID }}">
                         <input type="number" name="quantity" value="{{ item._quantity|round(0) }}" step="1" min="1">
-                        <button type="submit">Update</button>
+                        <button type="submit" class="btn btn-secondary">Update</button>
                     </form>
                 </td>
                 <td>${{ item._price * item._quantity }}</td>
