@@ -1,71 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cart</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% extends "base_customer.html" %}
 
-  <style>
-    body {
-      background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 40%;
-      color: white;
-    }
+{% block title %}Shopping Cart{% endblock %}
 
-    .cart-container {
-      background-color: rgba(0, 0, 0, 0.7); /* Translucent black background */
-      border-radius: 15px;
-      padding: 20px;
-      margin-top: 50px;
-      color: white;
-    }
+{% block content %}
+<h1>Your Shopping Cart</h1>
 
-    .list-group-item {
-      background-color: rgba(255, 255, 255, 0.1); /* Slight translucent background for items */
-      color: white;
-      border: none;
-    }
-
-    h1 {
-      text-align: center;
-      color: white;
-    }
-
-    label {
-      color: white;
-      font-size: 1.2rem;
-    }
-  </style>
-  
-</head>
-<body>
-  <h1 class="text-center text-white">Your Cart</h1>
-  <div class="container mt-4">
-    <ul class="list-group">
-      {% for item in cart_items %}
-      <li class="list-group-item">
-          <h5>{{ item.name }} - ${{ item.price }}</h5>
-          <p>{{ item.description }}</p>
-      </li>
-      {% else %}
-      <li class="list-group-item">Your cart is empty.</li>
-      {% endfor %}
-    </ul>
-
-    <div class="mt-4">
-        <label for="orderType">Choose Order Type:</label>
-        <select name="orderType" id="orderType" class="form-control">
-            <option value="pickup">Pickup</option>
-            <option value="delivery">Delivery</option>
-        </select>
-    </div>
-
-    <div class="mt-4">
-        <a href="/customerMenuList" class="btn btn-primary">Back to Menu</a>
-    </div>
-  </div>
-</body>
-</html>
+<div class="container-fluid">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            {% if item._itemType == "fuel" %}
+            <tr>
+                <td>{{ item._itemName }}</td>
+                <td>${{ item._price }}</td>
+                <td>
+                    <form action="{{ url_for('update_quantity') }}" method="POST">
+                        <input type="hidden" name="item_id" value="{{ item._itemID }}">
+                        <input type="number" name="quantity" value="{{ item._quantity }}" step="0.01" min="1">
+                        <button type="submit" class="btn btn-secondary">Update</button>
+                    </form>
+                </td>
+                <td>${{ item._price * item._quantity|round(2) }}</td>
+                <td>
+                    <form action="{{ url_for('remove_item') }}" method="POST">
+                        <input type="hidden" name="item_id" value="{{ item._itemID }}">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{ item._itemName }}</td>
+                <td>${{ item._price }}</td>
+                <td>
+                    <form action="{{ url_for('update_quantity') }}" method="POST">
+                        <input type="hidden" name="item_id" value="{{ item._itemID }}">
+                        <input type="number" name="quantity" value="{{ item._quantity|round(0) }}" step="1" min="1">
+                        <button type="submit" class="btn btn-secondary">Update</button>
+                    </form>
+                </td>
+                <td>${{ item._price * item._quantity }}</td>
+                <td>
+                    <form action="{{ url_for('remove_item') }}" method="POST">
+                        <input type="hidden" name="item_id" value="{{ item._itemID }}">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<! -- add hyperling to store page? -- >
+<p><a href="/">Continue Shopping</a></p>
+{% endblock %}
