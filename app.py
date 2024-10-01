@@ -5,6 +5,12 @@ from items_cart import cartItem
 
 app = Flask(__name__)
 
+# Sample data for testing
+my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
+my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
+my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
+my_cart.add(cartItem("fuel", "ID126", 800.00, 3.45, "fuel"))
+
 # Route for displaying the cart page
 @app.route('/cart', methods=['GET'])
 def view_cart():
