@@ -1,0 +1,21 @@
+{% extends 'base_customer.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Food Items</h1>
+        <ul class="list-unstyled">
+            {% for food in food_items %}
+                <li class="store-item mb-3">
+                    <div class="store-info">
+                        <span>{{ food.name }} - {{ food.description }} - ${{ food.price }}</span>
+                        <!-- <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST">
+                            <button class="btn btn-primary" type="submit">Add to Cart</button>
+                          </form> -->
+                    </div>
+                </li>
+            {% else %}
+                <li>No food items available</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

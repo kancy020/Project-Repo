@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Store Management</title>
+  <title>UTR Portal</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
@@ -37,10 +37,10 @@
         <div style="background-color: #333 ;"class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
-            <a href="{{ url_for('index') }}">Store Management View</a></li>
-            <a href="">Menu</a>
-            <a href="">Products</a>
+            <a href="{{ url_for('loginForManager') }}">Store Management View</a>
+            <a href="{{ url_for('customerMenuList') }}">Menu</a>
             <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+            <a href="{{ url_for('logout') }}">Logout</a>
           </div>
     </header>
     <main>
@@ -48,7 +48,7 @@
             {% block content %}
             {% endblock %}
         </div>
-        
+
     </main>
 </body>
 </html>

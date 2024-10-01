@@ -5,5 +5,28 @@
 {% block content %}
 <div class="container">
     <h1>UTR Homepage</h1>
+    <h2> Welcome {{user['username']}}</h2>
+
+    <div id="user-info" data-is-prefered="{{ user['isPrefered'] }}"></div>
+
+    <script>
+        // Retrieve the value from the data attribute
+        var isPrefered = document.getElementById('user-info').getAttribute('data-is-prefered') === 'True';
+
+        if (isPrefered) {
+            var img = document.createElement("img");
+            img.src = "https://cdn3.iconfinder.com/data/icons/baby-and-kids-3-5/34/123-1024.png";
+            img.width = 50;
+            img.height = 50;
+            img.alt = "crown";
+
+            // This next line will just add it to the <body> tag
+            document.body.appendChild(img);
+        } else {
+            alert("not perferd")
+            console.log("Not a preferred user.");
+        }
+</script>
 </div>
 {% endblock %}
+

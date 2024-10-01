@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Customer Login</title>
+</head>
+<body>
+  <div class="login-page">
+    <div class="pannel">
+      <h1>Customer Login</h1>
+      <!-- need to get username and password -->
+      <form action="{{url_for('loginForCustomer')}}" method="POST">
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="name" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <button type="submit">Login</button>
+          </div>
+      </form>
+      <br></br>
+      <a href="{{ url_for('guestLogin') }}">Sign in as Guest</a>
+      <br></br>
+      <a href="{{ url_for('signUp') }}">Sign Up</a>
+      <br></br>
+      <a href="{{ url_for('loginForManager') }}">Manager Login</a>
+    </div>
+  </div>
+
+      <script>
+        // Check if there's an error passed from the server-side
+        var error = "{{ error }}";
+        if (error) {
+
+            alert(error); 
+        }
+
+      </script>
+</body>
+</html>
+
+
