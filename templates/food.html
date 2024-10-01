@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+    .service-buttons {
+      justify-content: center;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .service-buttons button {
+      width: 300px;
+      height: 60px;
+      font-size: 25px;
+      color: white;
+    }
+    
+    .fixed-home-buttons {
+      justify-content: center;
+      display: flex;
+      gap: 10px;
+      padding: 50px;
+      position: relative;
+    } 
+
+    .fixed-home-buttons button {
+      width: 230px;
+      height: 70px;
+      font-size: 45px;
+      color: white;
+    }
+
+    body {
+      background-image: url('https://generated-assets.prod.myninja.ai/2ce54d58-cb51-4359-8ef3-736d2041e1fb/bd1ad6ae-335c-4c6b-ac0a-22bb35dca7f8_2.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 40%;
+      color: white;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+    }
+    
+    .card-text {
+      font-size: 1.25rem;
+    }
+    
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center text-white">Menu</h1>
+        <hr>
+        
+        <div class="row">
+          {% for item in food_items %}
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <p class="card-price">{{ item.price }}</p>
+                <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST">
+                  <button class="btn btn-primary" type="submit">Add to Cart</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+
+    <div class="fixed-home-buttons">
+      <a href="{{ url_for('addItem')}}" class='btn btn-primary'>Add Item</a>
+      <a href="{{ url_for('cart')}}" class='btn btn-primary'>View Cart</a>
+    </div>
+
+    <div class="fixed-home-buttons">
+      <button class="btn">Fuel</button>
+      <button class="btn">Stores</button>  
+      <button class="btn">Menu</button>
+    </div>
+</body>
+</html>

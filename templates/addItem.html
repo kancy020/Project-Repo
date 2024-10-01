@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container">
+      <h1> Add a New Dish</h1>
+      <form action="/addItem" method="POST">
+        <input type="text" placeholder="Food Name" name="name" required>
+        <input type="text" placeholder="Food Description" name="description" required>
+        <input type="text" placeholder="Food Price" name="price" required>
+        <input type="submit" value="Add Food" class="btn btn-secondary">
+      </form>
+    </div>
+    <script src="base.html"></script>
+  </body>
+</html>
