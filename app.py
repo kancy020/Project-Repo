@@ -323,7 +323,10 @@ def cart():
     cart_items = session.get('cart', [])
     return render_template('cart.html', cart_items=cart_items)
 
-@app.route('/pumpAndPay', methods=['POST'])
+@app.route('/pumpAndPay')
 def pumpAndPay():
-    
     return render_template('PumpAndpayPage.html')
+
+@app.route('/choiceOfOperation')
+def choiceOfOperation():
+    return render_template('FuelProcessPage.html')

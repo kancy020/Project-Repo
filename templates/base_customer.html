@@ -72,7 +72,6 @@
 </head>
 <body>
     <header>
-        <h1>UTR</h1>
         <div style="background-color: #333 ;"class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
@@ -81,7 +80,7 @@
             <a href="{{ url_for('loginForManager') }}">Store Management View</a>
             <li style="float: right; border-left: 1px solid #bbb">
               <a href="{{ url_for('logout') }}">Logout</a>
-          </li>
+            </li>
           </div>
     </header>
     <main>
@@ -89,7 +88,6 @@
             {% block content %}
             {% endblock %}
         </div>
-
     </main>
 </body>
 </html>

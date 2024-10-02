@@ -53,6 +53,7 @@
     .navbar li {
     list-style-type: none;
     display: inline;
+    color: white
     }
 
     .panel {
@@ -66,19 +67,17 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div style="background-color: #333 ;"class="navbar">
-                <a href="{{ url_for('managerIndex') }}">Home</a></li>
-                <a href="{{ url_for('storesDisplay') }}">Stores</a></li>
-                <a href="{{ url_for('menuList') }}">Menu</a></li>
-                <li style="padding: 14px; border-right: 1px solid #333"><h2>Welcome to UTR</h2></li>
-                <a href="{{ url_for('customerIndex') }}">Store Customer View</a></li>
-                <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
-                <li style="float: right; border-left: 1px solid #bbb">
-                    <a href="{{ url_for('logout') }}">Logout</a>
-                </li>
-            </ul>
-        </nav>
+        <div style="background-color: #333 ;"class="navbar">
+            <a href="{{ url_for('managerIndex') }}">Home</a></li>
+            <a href="{{ url_for('storesDisplay') }}">Stores</a></li>
+            <a href="{{ url_for('menuList') }}">Menu</a></li>
+            <li style="padding: 14px;"><h2>Welcome to UTR</h2></li>
+            <a href="{{ url_for('customerIndex') }}">Store Customer View</a></li>
+            <a href="">Cart</a></li>
+            <li style="float: right; border-left: 1px solid #bbb">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </div>
     </header>
     
     <main>
