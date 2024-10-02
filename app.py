@@ -286,7 +286,13 @@ def cart():
 @app.route('/cart/update_quantity', methods=['POST'])
 def update_quantity():
     item_name = request.form.get('item_name')
-    new_quantity = int(request.form.get('quantity'))
+    new_quantity = request.form.get('quantity')
+    item_type = request.form.get('item_type')
+
+    if item_type == "fuel":
+        new_quantity = float(new_quantity)
+    else:
+        new_quantity = int(new_quantity)
     
     my_cart.update(item_name, new_quantity)
     
@@ -316,7 +322,7 @@ def addToCart():
         fuel_id = request.form.get('fuel')
         litres = request.form.get('litres')
         petrol = Petrol.query.get_or_404(fuel_id)
-        new_cart_item = cartItem(petrol.name, petrol.id, petrol.price, int(litres), itemType='Petrol')
+        new_cart_item = cartItem(petrol.name, petrol.id, petrol.price, int(litres), itemType='fuel')
         my_cart.add(new_cart_item)
         return redirect(url_for('customerStoresDisplay'))
 
