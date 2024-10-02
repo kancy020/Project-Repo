@@ -1,7 +1,7 @@
 from flask import Flask
 import items_cart
 
-class cart:
+class Cart:
     def __init__(self):
         self.cart_list = []
 
@@ -14,7 +14,7 @@ class cart:
 
     def remove(self, item_id):
         for obj in self.cart_list:
-            if obj._itemID  == item_id:
+            if str(obj._itemID)  == str(item_id):
                 self.cart_list.remove(obj)
                 return
 
