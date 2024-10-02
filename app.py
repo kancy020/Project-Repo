@@ -2,13 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from backendFiles.Authenticator import *
 import json
-from cart import cart
+from cart import Cart
 from items_cart import cartItem
 
 app = Flask(__name__)
 
 # create global cart object
-my_cart = cart()
+my_cart = Cart()
 
 # Sample data for testing
 my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
@@ -28,7 +28,7 @@ def update_quantity():
     new_quantity = float(request.form.get('quantity'))
     
     for item in my_cart.cart_list:
-        if item._itemID == item_id:
+        if str(item._itemID) == str(item_id):
             item._quantity = new_quantity  # Update the quantity
             break
     
@@ -309,17 +309,14 @@ def addFoodItem():
 def addToCart(item_id):
     item = FoodItem.query.get_or_404(item_id)
     
-    if 'cart' not in session:
-        session['cart'] = []
+    if item:
+        item_name = item.name
+        item_price = item.price
+        item_quantity = 1
+        
+        my_cart.add(cartItem(item_name, item_id, item_price, item_quantity))
     
-    session['cart'].append({
-        'name': item.name,
-        'price': item.price,
-        'description': item.description,
-    })
-    
-    session.modified = True
-    return redirect(url_for('cart'))
+    return redirect(url_for('customerMenuList'))
 
 @app.route('/cart')
 def cart():

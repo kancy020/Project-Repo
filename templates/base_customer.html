@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
-    body{
+    body {
       background-color: rgb(238, 230, 230);
-      color: white;
+      color: black;
       margin: 0;
       padding: 0;
-      }
-      
-      body::before {
+    }
+    
+    body::before {
       content: "";
       position: absolute;
       top: 0;
@@ -27,7 +27,48 @@
       background-position: 55% 35%;
       opacity: 0.5;
       z-index: -1;
-      }
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      padding: 0.5rem;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      float: left;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    .navbar li {
+      list-style-type: none;
+      display: inline;
+    }
+
+    .continue-shopping {
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .panel {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
   </style>
 </head>
 
@@ -37,10 +78,12 @@
         <div style="background-color: #333 ;"class="navbar">
             <a href="{{ url_for('customerIndex') }}">Home</a>
             <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
-            <a href="{{ url_for('loginForManager') }}">Store Management View</a>
             <a href="{{ url_for('customerMenuList') }}">Menu</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-            <li style="float: right; border-left: 1px solid #bbb"><a href="{{ url_for('view_cart') }}">Cart</a></li>
+            <a href="{{ url_for('view_cart') }}">Cart</a>
+            <a href="{{ url_for('loginForManager') }}">Store Management View</a>
+            <li style="float: right; border-left: 1px solid #bbb">
+              <a href="{{ url_for('logout') }}">Logout</a>
+          </li>
           </div>
     </header>
     <main>
