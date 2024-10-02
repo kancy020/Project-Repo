@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PetrolSelectingPage</title>
+  <title>Store Details</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <style>
     .button-container {
@@ -70,16 +70,21 @@
         {% if store.petrols %}
             <h2>Petrol Prices:</h2>
             <div class="button-container">
-                {% for petrol in store.petrols %}
-                <div class="petrol-button">
-                    <input type="radio" id="{{ petrol.id }}" name="fuel" />
-                    <label for="{{ petrol.id }}">{{ petrol.name }} - ${{ petrol.price }}</label>
-                </div>
-                {% endfor %}
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="1-100 litres" aria-label="Litre">
-                    <span class="input-group-text">Add to Cart</span>
-                </div>
+                <form action="{{ url_for('addToCart') }}" method="POST">
+                    {% for petrol in store.petrols %}
+                        <div class="petrol-button">
+                            <input type="radio" id="{{ petrol.id }}" name="fuel" value="{{ petrol.id }}"/>
+                            <label for="{{ petrol.id }}">{{ petrol.name }} - ${{ petrol.price }}</label>
+                        </div>
+                        <input type="hidden" name="fuel_id" value="{{ petrol.id }}">
+                    {% endfor %}
+                    <div class="input-group mb-3">
+                        <input type="number" name="litres" class="form-control" placeholder="1-100 litres" min="1" max="100">
+                        <input type="hidden" name="item_type" value="petrol">
+                        <input type="hidden" name="fuel_id" value="{{ store.petrols[0].id }}">
+                        <button class="btn btn-primary" type="submit">Add to Cart</button>
+                    </div>
+                </form>
             </div>
         {% else %}
             <p>No petrol types available.</p>
