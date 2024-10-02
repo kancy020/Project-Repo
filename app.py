@@ -4,6 +4,7 @@ from backendFiles.Authenticator import *
 import json
 from cart import cart
 from items_cart import cartItem
+from payment import *
 
 app = Flask(__name__)
 
@@ -312,11 +313,45 @@ def addToCart(item_id):
     if 'cart' not in session:
         session['cart'] = []
     
-    session['cart'].append({
-        'name': item.name,
-        'price': item.price,
-        'description': item.description,
-    })
+    for cart_item in session['cart']:
+        if cart_item['name'] == item.name:
+            if 'quantity' not in cart_item:
+                cart_item['quantity'] = 0
+            cart_item['quantity'] += 1
+            break
+    else:
+        session['cart'].append({
+            'name': item.name,
+            'price': item.price,
+            'description': item.description,
+            'quantity': 1,
+        })
+        
+    session.modified = True
+    return redirect(url_for('cart'))
+
+@app.route('/addPetrolToCart/<int:store_id>', methods=['POST'])
+def addPetrolToCart(store_id):
+    fuel_id = request.form.get('fuel')
+    litres = request.form.get('litres')
+    petrol = Petrol.query.get_or_404(fuel_id)
+
+    if 'cart' not in session:
+        session['cart'] = []
+
+    key = f"petrol_{petrol.id}"
+
+    for cart_item in session['cart']:
+        if cart_item['name'] == petrol.name:
+            cart_item['quantity'] += int(litres)
+            break
+    else:
+        session['cart'].append({
+            'key': key,
+            'name': petrol.name,
+            'price': petrol.price,
+            'quantity': int(litres),
+        })
     
     session.modified = True
     return redirect(url_for('cart'))
@@ -330,3 +365,50 @@ def cart():
 def pumpAndPay():
     
     return render_template('PumpAndpayPage.html')
+
+@app.route('/pumpAndPay', methods=['POST'])
+def pumpAndPay():
+    
+    return render_template('PumpAndpayPage.html')
+
+@app.route('/receipt', methods=['GET', 'POST'])
+def receiptPage():
+    if 'cart' not in session:
+        return redirect(url_for('paymentPage'))
+    
+    total_price = 0
+    items = []
+
+    for item in session['cart']:
+        quantity = item.get('quantity', 1)
+        item_total = item['price'] * quantity
+        total_price += item_total
+        items.append({
+            'name': item['name'],
+            'price': item['price'],
+            'totalPrice': item_total,
+            'quantity': quantity,
+        })
+
+    return render_template("receipt.html", total_price = total_price, items = items)
+
+    # payment = Payment(balance=100000)
+    # orders = [
+    #     Order(name="hot dog", price=4.99, quantity=3),
+    #     Order(name="fuel", price=70.63, quantity=1),
+    #     Order(name="milk shake", price=2.30, quantity=2),
+    #     Order(name="donut", price=2.99, quantity=2)
+    # ]
+
+    # for order in orders:
+    #     payment.add_item(order)
+
+    # receipt = payment.initiate_transaction()
+    # total_price = receipt['totalPrice']
+    # items = receipt['items']
+
+    # #used to save point for buying prodcuts.
+    # # userPoint = total_price
+    # # user.addPoints(userPoint)
+
+    # return render_template("receipt.html", total_price=total_price, items=items)
