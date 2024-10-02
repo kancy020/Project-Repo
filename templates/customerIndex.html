@@ -35,7 +35,7 @@
                     <img src="https://static.vecteezy.com/system/resources/previews/004/911/408/non_2x/jerrycan-icon-template-black-color-editable-jerrycan-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" class="card-img-top" alt="fuel" style="width: 50px; height: 50px;">
                     <h5 class="card-title">Fuel</h5>
                     <p class="card-text">You need to buy some fuel. Try our new pump and pay features and your locate store or order online</p>
-                    <a href="#" class="btn btn-primary">Order Fuel</a>
+                    <a href="/pumpAndPay" class="btn btn-primary">Order Food</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <script>
         // Retrieve the value from the data attribute
         var isPrefered = document.getElementById('user-info').getAttribute('data-is-prefered') === 'True';
-
+        var rewardThing = document.querySelector('#reward')
         if (isPrefered) {
             var img = document.createElement("img");
             img.src = "https://cdn3.iconfinder.com/data/icons/baby-and-kids-3-5/34/123-1024.png";
@@ -66,11 +66,13 @@
             img.alt = "crown";
 
             
-            var rewardThing = document.querySelector('#reward')
+           
             rewardThing.appendChild(img);
 
         } else {
-            alert("not perferd")
+            var text = document.createElement("p");
+            text.textContent = "Hit 1000 points to become a preferred customer";
+            rewardThing.appendChild(text);
             console.log("Not a preferred user.");
         }
 </script>

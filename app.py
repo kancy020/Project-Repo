@@ -325,3 +325,8 @@ def addToCart(item_id):
 def cart():
     cart_items = session.get('cart', [])
     return render_template('cart.html', cart_items=cart_items)
+
+@app.route('/pumpAndPay', methods=['POST'])
+def pumpAndPay():
+    
+    return render_template('PumpAndpayPage.html')
