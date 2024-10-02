@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+    .petrol-button input[type="radio"] {
+      display: none;
+    }
+    .petrol-button label {
+      display: block;
+      width: 350px;
+      height: 45px;
+      line-height: 45px;
+      font-size: 25px;
+      text-align: left;
+      color: white;
+      background-color: #333;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .petrol-button input[type="radio"]:checked + label {
+      background-color: 111(81, 15, 15);
+      color: white;
+    }
+    .input-group {
+      width: fit-content;
+    }
+
+    petrol-button a:hover {
+      background-color: #000;
+    }
+</style>
+</head>
+ 
+<body>
+
+
+<div class="button-container">
+  {% for petrol in petrolTypes %}
+  <div class="petrol-button">
+    <input type="radio" id="{{ petrol.id }}" name="fuel" />
+    <label for="{{ petrol.id }}">{{ petrol.name }}  ${{ petrol.price }}</label>
+  </div>
+  {% endfor %}
+</div>
+</body>
+</html>
+
+{% extends 'base_customer.html' %}
+
+{% block title %}Store Details - {{ store.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1>{{ store.name }}</h1>
+        <p>Address: {{ store.address }}</p>
+        {% if store.petrols %}
+            <h2>Petrol Prices:</h2>
+            <div class="button-container">
+                <form action="{{ url_for('addToCart') }}" method="POST">
+                    {% for petrol in store.petrols %}
+                        <div class="petrol-button">
+                            <input type="radio" id="{{ petrol.id }}" name="fuel" value="{{ petrol.id }}"/>
+                            <label for="{{ petrol.id }}">{{ petrol.name }} - ${{ petrol.price }}</label>
+                        </div>
+                        <input type="hidden" name="fuel_id" value="{{ petrol.id }}">
+                    {% endfor %}
+                    <div class="input-group mb-3">
+                      <span class="input-group-text">$</span>
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      <span class="input-group-text">.00</span>
+                        <button class="btn btn-primary" type="submit">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <p>No petrol types available.</p>
+        {% endif %}
+    </div>
+    
+{% endblock %}
