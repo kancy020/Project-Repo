@@ -274,6 +274,8 @@ def addToCart(item_id):
     
     for cart_item in session['cart']:
         if cart_item['name'] == item.name:
+            if 'quantity' not in cart_item:
+                cart_item['quantity'] = 0
             cart_item['quantity'] += 1
             break
     else:
@@ -284,6 +286,32 @@ def addToCart(item_id):
             'quantity': 1,
         })
         
+    session.modified = True
+    return redirect(url_for('cart'))
+
+@app.route('/addPetrolToCart/<int:store_id>', methods=['POST'])
+def addPetrolToCart(store_id):
+    fuel_id = request.form.get('fuel')
+    litres = request.form.get('litres')
+    petrol = Petrol.query.get_or_404(fuel_id)
+
+    if 'cart' not in session:
+        session['cart'] = []
+
+    key = f"petrol_{petrol.id}"
+
+    for cart_item in session['cart']:
+        if cart_item['name'] == petrol.name:
+            cart_item['quantity'] += int(litres)
+            break
+    else:
+        session['cart'].append({
+            'key': key,
+            'name': petrol.name,
+            'price': petrol.price,
+            'quantity': int(litres),
+        })
+    
     session.modified = True
     return redirect(url_for('cart'))
 
@@ -301,13 +329,13 @@ def receiptPage():
     items = []
 
     for item in session['cart']:
-        item_total = item['price'] * 1 # For now assumes quantity is 1
+        item_total = item['price'] * item['quantity'] # For now assumes quantity is 1
         total_price += item_total
         items.append({
             'name': item['name'],
             'price': item['price'],
             'totalPrice': item_total,
-            'quantity': 1,
+            'quantity': item['quantity'],
         })
 
     return render_template("receipt.html", total_price = total_price, items = items)
