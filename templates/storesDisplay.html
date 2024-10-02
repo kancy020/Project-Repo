@@ -4,6 +4,7 @@
 
     <div class="w3-container">
         <h1>Stores</h1>
+        <a href="{{ url_for('addStore') }}" class="btn btn-primary">Add New Store</a>
             {% for store in stores %}
                 <li class="store-item mb-3">
                     <div class="store-info">

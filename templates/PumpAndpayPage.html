@@ -11,13 +11,10 @@
   <p>This feature lets you enter the pump reference code for quick and easy connecting. All you have to do is enter the code placed on the pump screen and your ready to pay and pump!</p>
 </div>
 <div class="textfield">
-    <input type="text" placeholder="Example (XYZ-2W3)">  
-</div>
-
-<div class="next-button">
-  <a href="/FuelProcessPage">
-    <button class="next-button" type="button">Next</button>
-  </a>
+  <form action="{{ url_for('pumpAndPay' )}}" method="post" id="pump-form">
+        <input type="text" name="input-code" placeholder="Enter Store ID">
+        <button type="submit" form="pump-form">Next</button>
+  </form>
 </div>
 
 <style>

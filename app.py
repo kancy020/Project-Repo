@@ -108,8 +108,11 @@ def customerStoresDisplay():
     stores = Stores.query.order_by(Stores.name.asc()).all()
     return render_template("customerStoresDisplay.html", title=title, stores=stores)
 
-@app.route('/customerStoreDetails/<int:store_id>')
+@app.route('/customerStoreDetails/<int:store_id>', methods=['GET', 'POST'])
 def customerStoreDetails(store_id):
+    if request.method == 'POST':
+        input_code = request.form['input_code']
+
     store = Stores.query.get_or_404(store_id)
     return render_template('customerStoreDetails.html', store=store)
 
@@ -329,8 +332,11 @@ def addToCart():
     else:
         return redirect(url_for('cart'))
 
-@app.route('/pumpAndPay')
+@app.route('/pumpAndPay', methods=['GET', 'POST'])
 def pumpAndPay():
+    if request.method == 'POST':
+        store_id = request.form['input-code']
+        return redirect(url_for('customerStoreDetails', store_id = store_id))
     return render_template('PumpAndpayPage.html')
 
 @app.route('/choiceOfOperation')
