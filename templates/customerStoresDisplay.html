@@ -6,7 +6,7 @@
             {% for store in stores %}
                 <li class="store-item mb-3">
                     <div class="store-info">
-                        <span>{{ store.name }} - {{ store.address }} - {{ store.opening_hours }}</span>
+                        <span>{{ store.name }} - {{ store.address }} - {{ store.opening_hours }} - Store ID: {{ store.id }}</span>
                         <a href="{{ url_for('customerStoreDetails', store_id=store.id) }}" class="btn btn-primary btn-sm ml-2">View Details</a>
                     </div>
                 </li>
