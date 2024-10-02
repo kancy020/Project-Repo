@@ -1,7 +1,7 @@
 from flask import Flask
 import items_cart
 
-class cart:
+class Cart:
     def __init__(self):
         self.cart_list = []
 

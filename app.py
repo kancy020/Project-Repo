@@ -2,13 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from backendFiles.Authenticator import *
 import json
-from cart import cart
+from cart import Cart
 from items_cart import cartItem
 
 app = Flask(__name__)
 
 # create global cart object
-my_cart = cart()
+my_cart = Cart()
 
 # Sample data for testing
 my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
