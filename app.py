@@ -28,7 +28,7 @@ def update_quantity():
     new_quantity = float(request.form.get('quantity'))
     
     for item in my_cart.cart_list:
-        if item._itemID == item_id:
+        if str(item._itemID) == str(item_id):
             item._quantity = new_quantity  # Update the quantity
             break
     
