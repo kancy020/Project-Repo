@@ -30,7 +30,7 @@
                         <button type="submit" class="btn btn-secondary">Update</button>
                     </form>
                 </td>
-                <td>${{ item._price * item._quantity|round(2) }}</td>
+                <td>${{ (item._price * item._quantity)|round(2) }}</td>
                 <td>
                     <form action="{{ url_for('remove_item') }}" method="POST">
                         <input type="hidden" name="item_id" value="{{ item._itemID }}">
@@ -49,7 +49,7 @@
                         <button type="submit" class="btn btn-secondary">Update</button>
                     </form>
                 </td>
-                <td>${{ item._price * item._quantity }}</td>
+                <td>${{ (item._price * item._quantity)|round(2) }}</td>
                 <td>
                     <form action="{{ url_for('remove_item') }}" method="POST">
                         <input type="hidden" name="item_id" value="{{ item._itemID }}">
