@@ -12,7 +12,6 @@
         color: black;
         margin: 0;
         padding: 0
-        padding-top: 70px;
     }
       
     body::before {
@@ -29,70 +28,55 @@
     z-index: -1;
     }
 
-    ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    header {
+        text-align: center;
+        padding: 1rem;
+      }
+
+    .navbar {
     background-color: #333;
-    position: fixed;
-    top:0;
-    width: 100%;
-    height: 67px;
+    overflow: hidden;
+    padding: 0.5rem;
     }
-    
-    li {
-    float: left;
-    font-size: large;
-    border-right: 1px solid #bbb;
-    length: 100%
-    }
-    
-    li a {
-    display: block;
+
+    .navbar a {
     color: white;
-    text-align: center;
-    padding: 20px 16px;
     text-decoration: none;
+    padding: 14px 20px;
+    float: left;
     }
-    
-    li a:hover {
-    background-color: #111;
+
+    .navbar a:hover {
+    background-color: #575757;
+    }
+
+    .navbar li {
+    list-style-type: none;
+    display: inline;
     }
 
     .panel {
-        background: #FFFFFF;
-        padding: 105px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.24);
-        color: black;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        box-sizing: border-box;
-        overflow: hidden;
-        index-z: 1;
-    } 
-
-    /* .panel {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin: 20px;
-    } */
-    
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    }
   </style>
 </head>
 <body>
     <header>
         <nav>
-            <ul class="nav">
-                <li><a href="{{ url_for('managerIndex') }}">Home</a></li>
-                <li><a href="{{ url_for('storesDisplay') }}">Stores</a></li>
-                <li><a href="{{ url_for('menuList') }}">Menu</a></li>
+            <div style="background-color: #333 ;"class="navbar">
+                <a href="{{ url_for('managerIndex') }}">Home</a></li>
+                <a href="{{ url_for('storesDisplay') }}">Stores</a></li>
+                <a href="{{ url_for('menuList') }}">Menu</a></li>
                 <li style="padding: 14px; border-right: 1px solid #333"><h2>Welcome to UTR</h2></li>
-                <li><a href="{{ url_for('customerIndex') }}">Store Customer View</a></li>
+                <a href="{{ url_for('customerIndex') }}">Store Customer View</a></li>
                 <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
+                <li style="float: right; border-left: 1px solid #bbb">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>
