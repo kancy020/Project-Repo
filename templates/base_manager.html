@@ -9,11 +9,11 @@
   <style>
     body{
         background-color: rgb(238, 230, 230);
-        color: white;
+        color: black;
         margin: 0;
         padding: 0
         padding-top: 70px;
-        }
+    }
       
     body::before {
     content: "";
@@ -26,7 +26,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 55% 35%;
-    opacity: 0.5;
     z-index: -1;
     }
 
@@ -72,40 +71,38 @@
         box-sizing: border-box;
         overflow: hidden;
         index-z: 1;
-        }
+    } 
+
+    /* .panel {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    } */
     
   </style>
 </head>
 <body>
     <header>
-<<<<<<< HEAD:templates/base.html
         <nav>
             <ul class="nav">
-                <li><a href="{{ url_for('customerIndex') }}">Home</a></li>
-                <li><a href="{{ url_for('customerStoresDisplay') }}">Stores</a></li>
-                <li><a href="{{ url_for('index') }}">Store Management View</a></li>
-                <li><a href="">Menu</a></li>
-                <li><a href="">Products</a></li>
+                <li><a href="{{ url_for('managerIndex') }}">Home</a></li>
+                <li><a href="{{ url_for('storesDisplay') }}">Stores</a></li>
+                <li><a href="{{ url_for('menuList') }}">Menu</a></li>
                 <li style="padding: 14px; border-right: 1px solid #333"><h2>Welcome to UTR</h2></li>
+                <li><a href="{{ url_for('customerIndex') }}">Store Customer View</a></li>
                 <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
             </ul>
         </nav>
-=======
-        <h1>Store Management</h1>
-        <div class="navbar">
-            <a href="{{ url_for('managerIndex') }}">Home</a>
-            <a href="{{ url_for('storesDisplay') }}">All Stores</a>
-            <a href="{{ url_for('addStore') }}">Add Store</a>
-            <a href="{{ url_for('loginForCustomer') }}">Customer View</a>
-            <li><a href="{{ url_for('menuList') }}">Menu</a></li>
-            <li><a href="">Products</a></li>
-        </div>
->>>>>>> 8e9ed2f3e20dc7d471ff8456c6a2b520f1d88cf6:templates/base_manager.html
     </header>
     
     <main>
+        <div class="panel">
             {% block content %}
             {% endblock %}
+        </div>
+            
     </main>
 </body>
 </html>

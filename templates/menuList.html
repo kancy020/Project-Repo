@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h1>Food Items</h1>
-        <ul class="list-unstyled">
+        
             {% for food in food_items %}
                 <li class="store-item mb-3">
                     <div class="store-info">
@@ -16,6 +16,5 @@
                 <li>No food items available</li>
             {% endfor %}
             <a href="{{ url_for('addFoodItem') }}">Add Food Item</a>
-        </ul>
     </div>
 {% endblock %}
