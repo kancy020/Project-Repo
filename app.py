@@ -329,13 +329,14 @@ def receiptPage():
     items = []
 
     for item in session['cart']:
-        item_total = item['price'] * item['quantity'] # For now assumes quantity is 1
+        quantity = item.get('quantity', 1)
+        item_total = item['price'] * quantity
         total_price += item_total
         items.append({
             'name': item['name'],
             'price': item['price'],
             'totalPrice': item_total,
-            'quantity': item['quantity'],
+            'quantity': quantity,
         })
 
     return render_template("receipt.html", total_price = total_price, items = items)
