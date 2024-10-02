@@ -11,7 +11,9 @@
                             <h5 class="card-title">{{ food.name }}</h5>
                             <p class="card-text">{{ food.description }}</p>
                             <p class="card-text font-weight-bold">${{ food.price }}</p>
-                            <form action="{{ url_for('addToCart', item_id=food.id) }}" method="POST">
+                            <form action="{{ url_for('addToCart') }}" method="POST">
+                                <input type="hidden" name="item_type" value="food">
+                                <input type="hidden" name="item_id" value="{{ food.id }}">
                                 <button class="btn btn-primary btn-block" type="submit">Add to Cart</button>
                             </form>
                         </div>

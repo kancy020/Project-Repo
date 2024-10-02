@@ -8,44 +8,7 @@ from payment import *
 
 app = Flask(__name__)
 
-# create global cart object
-my_cart = cart()
 
-# Sample data for testing
-my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
-my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
-my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
-my_cart.add(cartItem("fuel", "ID126", 1.577, 3.45, "fuel"))
-
-# Route for displaying the cart page
-@app.route('/cart', methods=['GET'])
-def view_cart():
-    return render_template('cart.html', cart=my_cart.cart_list)
-
-# Route to update item quantity in the cart
-@app.route('/cart/update_quantity', methods=['POST'])
-def update_quantity():
-    item_id = request.form.get('item_id')
-    new_quantity = float(request.form.get('quantity'))
-    
-    for item in my_cart.cart_list:
-        if item._itemID == item_id:
-            item._quantity = new_quantity  # Update the quantity
-            break
-    
-    return redirect(url_for('view_cart'))
-
-# Route to remove an item from the cart
-@app.route('/cart/remove_item', methods=['POST'])
-def remove_item():
-    item_id = request.form.get('item_id')
-    print(item_id)
-    my_cart.remove(item_id)
-    
-    return redirect(url_for('view_cart'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stores.db'
 app.secret_key = 'key'
 # Initalise DB
@@ -306,65 +269,60 @@ def addFoodItem():
             return redirect(url_for('menuList'))
     return render_template('addFoodItem.html')
 
-@app.route('/addToCart/<int:item_id>', methods=['POST'])
-def addToCart(item_id):
-    item = FoodItem.query.get_or_404(item_id)
-    
-    if 'cart' not in session:
-        session['cart'] = []
-    
-    for cart_item in session['cart']:
-        if cart_item['name'] == item.name:
-            if 'quantity' not in cart_item:
-                cart_item['quantity'] = 0
-            cart_item['quantity'] += 1
-            break
-    else:
-        session['cart'].append({
-            'name': item.name,
-            'price': item.price,
-            'description': item.description,
-            'quantity': 1,
-        })
-        
-    session.modified = True
-    return redirect(url_for('cart'))
+# create global cart object
+my_cart = cart()
 
-@app.route('/addPetrolToCart/<int:store_id>', methods=['POST'])
-def addPetrolToCart(store_id):
-    fuel_id = request.form.get('fuel')
-    litres = request.form.get('litres')
-    petrol = Petrol.query.get_or_404(fuel_id)
+# Sample data for testing
+# my_cart.add(cartItem("Laptop", "ID123", 1200.00, 1))
+# my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
+# my_cart.add(cartItem("Phone", "ID124", 800.00, 2))
+# my_cart.add(cartItem("fuel", "ID126", 1.577, 3.45, "fuel"))
 
-    if 'cart' not in session:
-        session['cart'] = []
-
-    key = f"petrol_{petrol.id}"
-
-    for cart_item in session['cart']:
-        if cart_item['name'] == petrol.name:
-            cart_item['quantity'] += int(litres)
-            break
-    else:
-        session['cart'].append({
-            'key': key,
-            'name': petrol.name,
-            'price': petrol.price,
-            'quantity': int(litres),
-        })
-    
-    session.modified = True
-    return redirect(url_for('cart'))
-
-@app.route('/cart')
+# Route for displaying the cart page
+@app.route('/cart', methods=['GET'])
 def cart():
-    cart_items = session.get('cart', [])
-    return render_template('cart.html', cart_items=cart_items)
+    return render_template('cart.html', cart=my_cart.cart_list)
 
-@app.route('/pumpAndPay', methods=['POST'])
-def pumpAndPay():
+# Route to update item quantity in the cart
+@app.route('/cart/update_quantity', methods=['POST'])
+def update_quantity():
+    item_name = request.form.get('item_name')
+    new_quantity = int(request.form.get('quantity'))
     
-    return render_template('PumpAndpayPage.html')
+    my_cart.update(item_name, new_quantity)
+    
+    return redirect(url_for('cart'))
+
+# Route to remove an item from the cart
+@app.route('/cart/remove_item', methods=['POST'])
+def remove_item():
+    item_name = request.form.get('item_name')
+    print(item_name)
+    my_cart.remove(item_name)
+    
+    return redirect(url_for('cart'))
+
+@app.route('/addToCart', methods=['POST'])
+def addToCart():
+    item_type = request.form.get('item_type')
+    
+    if item_type == "food":
+        item_id = request.form.get('item_id')
+        item = FoodItem.query.get_or_404(item_id)
+        new_cart_item = cartItem(item.name, item.id, item.price, 1, itemType='Food')
+        my_cart.add(new_cart_item)
+        return redirect(url_for('customerMenuList'))
+
+    elif item_type == "petrol":
+        fuel_id = request.form.get('fuel')
+        litres = request.form.get('litres')
+        petrol = Petrol.query.get_or_404(fuel_id)
+        new_cart_item = cartItem(petrol.name, petrol.id, petrol.price, int(litres), itemType='Petrol')
+        my_cart.add(new_cart_item)
+        return redirect(url_for('customerStoresDisplay'))
+
+    else:
+        return redirect(url_for('cart'))
 
 @app.route('/pumpAndPay', methods=['POST'])
 def pumpAndPay():
@@ -373,19 +331,19 @@ def pumpAndPay():
 
 @app.route('/receipt', methods=['GET', 'POST'])
 def receiptPage():
-    if 'cart' not in session:
-        return redirect(url_for('paymentPage'))
+    if not my_cart.cart_list:
+        return redirect(url_for('cart'))
     
     total_price = 0
     items = []
 
-    for item in session['cart']:
-        quantity = item.get('quantity', 1)
-        item_total = item['price'] * quantity
+    for item in my_cart.cart_list:
+        quantity = item._quantity
+        item_total = item._price * quantity
         total_price += item_total
         items.append({
-            'name': item['name'],
-            'price': item['price'],
+            'name': item._itemName,
+            'price': item._price,
             'totalPrice': item_total,
             'quantity': quantity,
         })
@@ -412,3 +370,4 @@ def receiptPage():
     # # user.addPoints(userPoint)
 
     # return render_template("receipt.html", total_price=total_price, items=items)
+
