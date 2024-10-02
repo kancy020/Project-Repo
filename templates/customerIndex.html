@@ -57,7 +57,7 @@
     <script>
         // Retrieve the value from the data attribute
         var isPrefered = document.getElementById('user-info').getAttribute('data-is-prefered') === 'True';
-
+        var rewardThing = document.querySelector('#reward')
         if (isPrefered) {
             var img = document.createElement("img");
             img.src = "https://cdn3.iconfinder.com/data/icons/baby-and-kids-3-5/34/123-1024.png";
@@ -66,11 +66,13 @@
             img.alt = "crown";
 
             
-            var rewardThing = document.querySelector('#reward')
+           
             rewardThing.appendChild(img);
 
         } else {
-            alert("not perferd")
+            var text = document.createElement("p");
+            text.textContent = "Hit 1000 points to become a preferred customer";
+            rewardThing.appendChild(text);
             console.log("Not a preferred user.");
         }
 </script>
