@@ -4,10 +4,55 @@
 
 {% block content %}
 <div class="container">
-    <h1>UTR Homepage</h1>
-    <h2> Welcome {{user['username']}}</h2>
 
-    <div id="user-info" data-is-prefered="{{ user['isPrefered'] }}"></div>
+    <div class="container text-center py-5" style="color: black">
+        <div class="card shadow-sm mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+                <h1 class="display-4">Welcome, {{ user['username'] }}!</h1>
+                <p class="lead">We're glad to have you here.</p>
+                <div id="reward"></div>
+                <p class="h5 mt-4">You have <strong>{{ user['points'] }}</strong> loyalty points.</p>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="row text-center py-5" style="color: black;">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2697/2697432.png" class="card-img-top" alt="store" style="width: 50px; height: 50px;">
+                    <h5 class="card-title">Stores</h5>
+                    <p class="card-text">Need help finding us. You can find the store most suited for you from looking through our list of stores</p>
+                    <a href="/customerStoresDisplay" class="btn btn-primary">View Stores</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <img src="https://static.vecteezy.com/system/resources/previews/004/911/408/non_2x/jerrycan-icon-template-black-color-editable-jerrycan-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" class="card-img-top" alt="fuel" style="width: 50px; height: 50px;">
+                    <h5 class="card-title">Fuel</h5>
+                    <p class="card-text">You need to buy some fuel. Try our new pump and pay features and your locate store or order online</p>
+                    <a href="#" class="btn btn-primary">Order Fuel</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <img src="https://openclipart.org/image/2000px/289282" class="card-img-top" alt="food" style="width: 50px; height: 50px;">
+                    <h5 class="card-title">Food</h5>
+                    <p class="card-text">You need something to eat. View our selected range of food you can order from your locate UTR</p>
+                    <a href="customerMenuList" class="btn btn-primary">Order Food</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="user-info" data-is-prefered="{{user['isPrefered']}}">
 
     <script>
         // Retrieve the value from the data attribute
@@ -20,8 +65,10 @@
             img.height = 50;
             img.alt = "crown";
 
-            // This next line will just add it to the <body> tag
-            document.body.appendChild(img);
+            
+            var rewardThing = document.querySelector('#reward')
+            rewardThing.appendChild(img);
+
         } else {
             alert("not perferd")
             console.log("Not a preferred user.");

@@ -6,11 +6,10 @@ class User:
         self.username= username
         self.password = self._encryptPassword(password)
         self.contactNumber = contactNumber
-        self.points = 20000
+        self.points = 0
         self.isPrefered = False
 
-        if self.points>=1000:
-           self.isPrefered = True
+        
  
     def _encryptPassword(self, password):
         # Encrypt the password with the username and return the sha digest.
@@ -22,3 +21,10 @@ class User:
         # Returns True if the password is valid for this user, false otherwise.
         encrypted = self._encryptPassword(password)
         return encrypted == self.password
+    
+    def cheakPrefered(self):
+        if self.points>=1000:
+           self.isPrefered = True
+
+    def addpoints(self,Amt):
+        self.points+=Amt

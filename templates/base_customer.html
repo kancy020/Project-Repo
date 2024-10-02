@@ -9,7 +9,7 @@
   <style>
     body{
       background-color: rgb(238, 230, 230);
-      color: white;
+      color: rgb(0, 0, 0);
       margin: 0;
       padding: 0;
       }
@@ -32,17 +32,34 @@
 </head>
 
 <body>
-    <header>
-        <h1>UTR</h1>
-        <div style="background-color: #333 ;"class="navbar">
-            <a href="{{ url_for('customerIndex') }}">Home</a>
-            <a href="{{ url_for('customerStoresDisplay') }}">Stores</a>
-            <a href="{{ url_for('loginForManager') }}">Store Management View</a>
-            <a href="{{ url_for('customerMenuList') }}">Menu</a>
-            <li style="float: right; border-left: 1px solid #bbb"><a href="">Cart</a></li>
-            <a href="{{ url_for('logout') }}">Logout</a>
-          </div>
-    </header>
+  <header>
+    <h1 style="text-align: center; margin: 20px 0;">UTR</h1>
+    <div class="navbar" style="background-color: #333; padding: 10px; display: flex; justify-content: center; flex-wrap: wrap;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex;">
+            <li style="margin: 0 15px;">
+                <a href="{{ url_for('customerIndex') }}" style="color: white; text-decoration: none;">Home</a>
+            </li>
+            <li style="margin: 0 15px;">
+                <a href="{{ url_for('customerStoresDisplay') }}" style="color: white; text-decoration: none;">Stores</a>
+            </li>
+            <li style="margin: 0 15px;">
+                <a href="{{ url_for('loginForManager') }}" style="color: white; text-decoration: none;">Store Management View</a>
+            </li>
+            <li style="margin: 0 15px;">
+                <a href="{{ url_for('customerMenuList') }}" style="color: white; text-decoration: none;">Menu</a>
+            </li>
+        </ul>
+        <ul style="list-style: none; padding: 0; margin-left: auto; display: flex;">
+            <li style="margin: 0 15px;">
+                <a href="#" style="color: white; text-decoration: none;">Cart</a>
+            </li>
+            <li style="margin: 0 15px;">
+                <a href="{{ url_for('logout') }}" style="color: white; text-decoration: none;">Logout</a>
+            </li>
+        </ul>
+    </div>
+</header>
+
     <main>
         <div class="panel">
             {% block content %}
