@@ -7,6 +7,8 @@ class Authenticator:
     def fillData(self):
         #just for testing
         Authenticator.userDict["Logan"] = User("Logan","test",1234)
+        Authenticator.userDict["Logan"].addpoints(1135)
+        Authenticator.userDict["Jordon"] = User("Jordon","test2",1234)
 
 
     def addUser(self,username, password, contactNumber):
@@ -31,7 +33,7 @@ class Authenticator:
             
             if user.checkPassword(password)==True:
                 print("you have logged in")
-                
+                user.cheakPrefered()
                 return user
             else:
                 raise InvalidPassword(username)
